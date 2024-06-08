@@ -10,19 +10,19 @@ class SignupFarmPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(height: 80),
+        SizedBox(height: MediaQuery.of(context).size.height * 0.08),
         Text(
           'CADASTRAR FAZENDA',
           style:
               GoogleFonts.kanit(color: const Color(0xFF2DBCB6), fontSize: 36),
         ),
-        const SizedBox(height: 50),
+        SizedBox(height: MediaQuery.of(context).size.height * 0.075),
         const InputDesign(text: 'NOME'),
-        const SizedBox(height: 25),
+        SizedBox(height: MediaQuery.of(context).size.height * 0.03),
         const InputDesign(text: 'DESCRIÇÃO'),
-        const SizedBox(height: 25),
+        SizedBox(height: MediaQuery.of(context).size.height * 0.03),
         const InputDesign(text: 'LOCALIZAÇÃO'),
-        const SizedBox(height: 100),
+        SizedBox(height: MediaQuery.of(context).size.height * 0.195),
         const ButtonDesign(text: 'CONFIRMAR')
       ],
     );

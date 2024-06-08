@@ -28,7 +28,7 @@ class BodyDesign extends StatelessWidget {
             Expanded(
               child: Container(
                 color: const Color(0xFFFFFFFF),
-                child: const FarmPage(),
+                child: const SignupFarmPage(),
               ),
             ),
           ],

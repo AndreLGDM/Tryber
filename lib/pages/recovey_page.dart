@@ -9,19 +9,19 @@ class RecoveyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(mainAxisSize: MainAxisSize.min, children: [
-      const SizedBox(height: 86),
+      SizedBox(height: MediaQuery.of(context).size.height * 0.11),
       Center(
         child: SizedBox(
-          width: 232,
-          height: 81,
+          width: MediaQuery.of(context).size.width * 1,
+          height: MediaQuery.of(context).size.height * 0.12,
           child: Image.asset('assets/images/logo.png'),
         ),
       ),
-      const SizedBox(height: 200),
+      SizedBox(height: MediaQuery.of(context).size.height * 0.25),
       const InputDesign(text: 'Email de recuperação'),
-      const SizedBox(height: 70),
+      SizedBox(height: MediaQuery.of(context).size.height * 0.07),
       const ButtonDesign(text: 'CONFIRMAR'),
-      const SizedBox(height: 10),
+      SizedBox(height: MediaQuery.of(context).size.height * 0.05),
       Text('Confirmar pelo celular', style: GoogleFonts.kanit())
     ]);
   }

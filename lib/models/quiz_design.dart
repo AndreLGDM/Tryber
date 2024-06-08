@@ -31,11 +31,12 @@ class QuizDesign extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
+                  padding: EdgeInsets.fromLTRB(
+                      MediaQuery.of(context).size.height * 0.0024, 0, 0, 0),
                   child: Text(
                     text,
                     style: GoogleFonts.kanit(
-                        fontSize: MediaQuery.of(context).size.height * 0.024),
+                        fontSize: MediaQuery.of(context).size.height * 0.023),
                   ),
                 )
               ],

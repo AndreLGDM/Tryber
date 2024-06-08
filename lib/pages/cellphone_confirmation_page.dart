@@ -10,18 +10,18 @@ class CellphoneConfirmationPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(mainAxisSize: MainAxisSize.min, children: [
-        const SizedBox(height: 86),
+        SizedBox(height: MediaQuery.of(context).size.height * 0.1),
         Center(
           child: SizedBox(
-            width: 232,
-            height: 81,
+            width: MediaQuery.of(context).size.width * 1,
+            height: MediaQuery.of(context).size.height * 0.12,
             child: Image.asset('assets/images/logo.png'),
           ),
         ),
-        const SizedBox(height: 50),
+        SizedBox(height: MediaQuery.of(context).size.height * 0.07),
         SizedBox(
-          width: 296,
-          height: 180,
+          width: MediaQuery.of(context).size.width * 0.82,
+          height: MediaQuery.of(context).size.height * 0.22,
           child: Container(
             decoration: BoxDecoration(
               border: Border.all(color: const Color(0xFF2DBCB6), width: 2.5),
@@ -34,11 +34,11 @@ class CellphoneConfirmationPage extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(height: 30),
+        SizedBox(height: MediaQuery.of(context).size.height * 0.05),
         const InputDesign(text: 'Código de confirmação'),
-        const SizedBox(height: 50),
+        SizedBox(height: MediaQuery.of(context).size.height * 0.075),
         const ButtonDesign(text: 'CONFIRMAR'),
-        const SizedBox(height: 20),
+        SizedBox(height: MediaQuery.of(context).size.height * 0.03),
         const TextButtonDesign('button_confirmar_pelo_celular',
             text: 'Confirmar pelo celular')
       ]),
