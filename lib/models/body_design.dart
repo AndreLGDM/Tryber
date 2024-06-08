@@ -6,6 +6,7 @@ import 'package:tryber/pages/mail_confirmation_page.dart';
 import 'package:tryber/pages/principal_page.dart';
 import 'package:tryber/pages/recovey_page.dart';
 import 'package:tryber/pages/signup_farm_page.dart';
+import 'package:tryber/pages/signup_piquete.dart';
 
 class BodyDesign extends StatelessWidget {
   const BodyDesign({super.key});
@@ -28,7 +29,7 @@ class BodyDesign extends StatelessWidget {
             Expanded(
               child: Container(
                 color: const Color(0xFFFFFFFF),
-                child: const SignupFarmPage(),
+                child: const SignUpPiquete(),
               ),
             ),
           ],
