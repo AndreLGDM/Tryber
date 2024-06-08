@@ -3,8 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:tryber/models/button_design.dart';
 import 'package:tryber/models/input_design.dart';
 
-class SignupFarmPage extends StatelessWidget {
-  const SignupFarmPage({super.key});
+class RegisterPicket extends StatelessWidget {
+  const RegisterPicket({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,16 +12,16 @@ class SignupFarmPage extends StatelessWidget {
       children: [
         SizedBox(height: MediaQuery.of(context).size.height * 0.08),
         Text(
-          'CADASTRAR FAZENDA',
+          'ADCIONAR PIQUETE',
           style:
               GoogleFonts.kanit(color: const Color(0xFF2DBCB6), fontSize: 36),
         ),
         SizedBox(height: MediaQuery.of(context).size.height * 0.075),
-        const InputDesign(text: 'NOME'),
+        const InputDesign(text: 'NOME DO PIQUETE'),
         SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-        const InputDesign(text: 'DESCRIÇÃO'),
+        const InputDesign(text: 'TAMANHO'),
         SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-        const InputDesign(text: 'LOCALIZAÇÃO'),
+        const InputDesign(text: 'DESCRIÇÃO DO PIQUETE'),
         SizedBox(height: MediaQuery.of(context).size.height * 0.195),
         const ButtonDesign(text: 'CONFIRMAR')
       ],
