@@ -8,21 +8,23 @@ class RecoveyPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(mainAxisSize: MainAxisSize.min, children: [
-      SizedBox(height: MediaQuery.of(context).size.height * 0.11),
-      Center(
-        child: SizedBox(
-          width: MediaQuery.of(context).size.width * 1,
-          height: MediaQuery.of(context).size.height * 0.12,
-          child: Image.asset('assets/images/logo.png'),
+    return SingleChildScrollView(
+      child: Column(mainAxisSize: MainAxisSize.min, children: [
+        SizedBox(height: MediaQuery.of(context).size.height * 0.11),
+        Center(
+          child: SizedBox(
+            width: MediaQuery.of(context).size.width * 1,
+            height: MediaQuery.of(context).size.height * 0.12,
+            child: Image.asset('assets/images/logo.png'),
+          ),
         ),
-      ),
-      SizedBox(height: MediaQuery.of(context).size.height * 0.25),
-      const InputDesign(text: 'Email de recuperação'),
-      SizedBox(height: MediaQuery.of(context).size.height * 0.07),
-      const ButtonDesign(text: 'CONFIRMAR'),
-      SizedBox(height: MediaQuery.of(context).size.height * 0.05),
-      Text('Confirmar pelo celular', style: GoogleFonts.kanit())
-    ]);
+        SizedBox(height: MediaQuery.of(context).size.height * 0.25),
+        const InputDesign(text: 'Email de recuperação'),
+        SizedBox(height: MediaQuery.of(context).size.height * 0.07),
+        const ButtonDesign(text: 'CONFIRMAR'),
+        SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+        Text('Confirmar pelo celular', style: GoogleFonts.kanit())
+      ]),
+    );
   }
 }

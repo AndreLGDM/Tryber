@@ -8,12 +8,16 @@ class PrincipalPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(children: [
       Container(
-        height: 86,
+        height: MediaQuery.of(context).size.height * 0.1,
         alignment: Alignment.topLeft,
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(8, 8, 5, 0),
+          padding: EdgeInsets.fromLTRB(
+              MediaQuery.of(context).size.width * 0.02,
+              MediaQuery.of(context).size.height * 0.015,
+              MediaQuery.of(context).size.height * 0.015,
+              0),
           child: Transform.scale(
-            scale: 1,
+            scale: MediaQuery.of(context).size.height * 0.001,
             child: const Icon(
               Icons.account_circle,
               size: 70,
@@ -23,32 +27,29 @@ class PrincipalPage extends StatelessWidget {
         ),
       ),
       const SizedBox(height: 15),
-      Expanded(
+      const Expanded(
         child: SingleChildScrollView(
-          child: Container(
-            child: const Column(
-              children: [
-                QuizDesign(
-                    icon: 'assets/images/casinha.png', text: 'EDITAR FAZENDA'),
-                SizedBox(height: 30),
-                QuizDesign(icon: 'assets/images/paper.png', text: 'RELATORIOS'),
-                SizedBox(height: 30),
-                QuizDesign(
-                    icon: 'assets/images/cow.png', text: 'CADASTRAR ANIMAL'),
-                SizedBox(height: 30),
-                QuizDesign(
-                    icon: 'assets/images/cow_eating.png',
-                    text: 'CADASTRAR COCHO'),
-                SizedBox(height: 30),
-                QuizDesign(
-                    icon: 'assets/images/tractor.png',
-                    text: 'VINCULAR EQUIPAMENTO'),
-                SizedBox(height: 30),
-                QuizDesign(
-                    icon: 'assets/images/piquete.png',
-                    text: 'ADCIONAR PIQUETE'),
-              ],
-            ),
+          child: Column(
+            children: [
+              QuizDesign(
+                  icon: 'assets/images/casinha.png', text: 'EDITAR FAZENDA'),
+              SizedBox(height: 30),
+              QuizDesign(icon: 'assets/images/paper.png', text: 'RELATORIOS'),
+              SizedBox(height: 30),
+              QuizDesign(
+                  icon: 'assets/images/cow.png', text: 'CADASTRAR ANIMAL'),
+              SizedBox(height: 30),
+              QuizDesign(
+                  icon: 'assets/images/cow_eating.png',
+                  text: 'CADASTRAR COCHO'),
+              SizedBox(height: 30),
+              QuizDesign(
+                  icon: 'assets/images/tractor.png',
+                  text: 'VINCULAR EQUIPAMENTO'),
+              SizedBox(height: 30),
+              QuizDesign(
+                  icon: 'assets/images/piquete.png', text: 'ADCIONAR PIQUETE'),
+            ],
           ),
         ),
       ),

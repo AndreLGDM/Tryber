@@ -30,15 +30,13 @@ class QuizDesign extends StatelessWidget {
                     color: const Color(0xFF4C5C65),
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(
-                      MediaQuery.of(context).size.height * 0.0024, 0, 0, 0),
+                Expanded(
                   child: Text(
                     text,
                     style: GoogleFonts.kanit(
-                        fontSize: MediaQuery.of(context).size.height * 0.023),
+                        fontSize: MediaQuery.of(context).size.height * 0.0221),
                   ),
-                )
+                ),
               ],
             ),
           ),

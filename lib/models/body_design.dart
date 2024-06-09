@@ -30,9 +30,8 @@ class BodyDesign extends StatelessWidget {
             ),
             Expanded(
               child: Container(
-                color: const Color(0xFFFFFFFF),
-                child: const RegisterAnimal(),
-              ),
+                  color: const Color(0xFFFFFFFF),
+                  child: const RegisterAnimal()),
             ),
           ],
         ),
