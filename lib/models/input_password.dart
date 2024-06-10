@@ -14,7 +14,7 @@ class _InputPasswordState extends State<InputPassword> {
   Widget build(BuildContext context) {
     bool isObscure = true;
     return SizedBox(
-      width: 300,
+      width: MediaQuery.of(context).size.width * 0.8,
       child: TextFormField(
         obscureText: isObscure,
         decoration: const InputDecoration(

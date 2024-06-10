@@ -3,8 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:tryber/models/button_design.dart';
 import 'package:tryber/models/input_design.dart';
 
-class RegisterFarmPage extends StatelessWidget {
-  const RegisterFarmPage({super.key});
+class RegisterFarm extends StatelessWidget {
+  const RegisterFarm({super.key});
 
   @override
   Widget build(BuildContext context) {
