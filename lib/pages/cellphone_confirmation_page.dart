@@ -37,7 +37,7 @@ class CellphoneConfirmationPage extends StatelessWidget {
         SizedBox(height: MediaQuery.of(context).size.height * 0.05),
         const InputDesign(text: 'Código de confirmação'),
         SizedBox(height: MediaQuery.of(context).size.height * 0.075),
-        const ButtonDesign(text: 'CONFIRMAR'),
+        ButtonDesign(text: 'CONFIRMAR', action: () {}),
         SizedBox(height: MediaQuery.of(context).size.height * 0.03),
         const TextButtonDesign('button_confirmar_pelo_celular',
             text: 'Confirmar pelo celular')

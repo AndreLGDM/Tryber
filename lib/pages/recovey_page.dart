@@ -21,7 +21,7 @@ class RecoveyPage extends StatelessWidget {
         SizedBox(height: MediaQuery.of(context).size.height * 0.25),
         const InputDesign(text: 'Email de recuperação'),
         SizedBox(height: MediaQuery.of(context).size.height * 0.07),
-        const ButtonDesign(text: 'CONFIRMAR'),
+        ButtonDesign(text: 'CONFIRMAR', action: () {}),
         SizedBox(height: MediaQuery.of(context).size.height * 0.05),
         Text('Confirmar pelo celular', style: GoogleFonts.kanit())
       ]),

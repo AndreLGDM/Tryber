@@ -1,21 +1,40 @@
 import 'package:flutter/material.dart';
-import 'package:tryber/models/page_controller.dart';
-import 'package:tryber/pages/cellphone_confirmation_page.dart';
 import 'package:tryber/pages/farm_page.dart';
 import 'package:tryber/pages/login_page.dart';
-import 'package:tryber/pages/mail_confirmation_page.dart';
-import 'package:tryber/pages/principal_page.dart';
-import 'package:tryber/pages/recovey_page.dart';
-import 'package:tryber/pages/register_animal.dart';
 import 'package:tryber/pages/register_farm.dart';
 import 'package:tryber/pages/register_picket.dart';
-import 'package:tryber/pages/register_trough.dart';
 
-class BodyDesign extends StatelessWidget {
+class BodyDesign extends StatefulWidget {
   const BodyDesign({super.key});
 
   @override
+  State<BodyDesign> createState() {
+    return _BodyDesignState();
+  }
+}
+
+class _BodyDesignState extends State<BodyDesign> {
+  var activeScreen = 'login-screen';
+
+  void login() {
+    setState(() {
+      activeScreen = 'farm-page';
+    });
+  }
+
+  void navegarCadastrarFazenda() {
+    setState(() {
+      activeScreen = 'register-page';
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
+    Widget screenWidget = activeScreen == 'login-screen'
+        ? LoginPage(login)
+        : activeScreen == 'farm-page'
+            ? FarmPage(navegarCadastrarFazenda)
+            : const RegisterFarm();
     return MaterialApp(
       home: Scaffold(
         resizeToAvoidBottomInset: true,
@@ -31,8 +50,9 @@ class BodyDesign extends StatelessWidget {
             ),
             Expanded(
               child: Container(
-                  color: const Color(0xFFFFFFFF),
-                  child: const PageControllerWidget()),
+                color: const Color(0xFFFFFFFF),
+                child: const RegisterPicket(),
+              ),
             ),
           ],
         ),

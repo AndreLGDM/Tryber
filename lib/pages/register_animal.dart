@@ -34,7 +34,7 @@ class RegisterAnimal extends StatelessWidget {
           SizedBox(height: MediaQuery.of(context).size.height * 0.03),
           const InputDesign(text: 'PESO'),
           SizedBox(height: MediaQuery.of(context).size.height * 0.12),
-          const ButtonDesign(text: 'CONFIRMAR')
+          ButtonDesign(text: 'CONFIRMAR', action: () {})
         ],
       ),
     );

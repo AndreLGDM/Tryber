@@ -24,7 +24,7 @@ class RegisterFarm extends StatelessWidget {
           SizedBox(height: MediaQuery.of(context).size.height * 0.03),
           const InputDesign(text: 'LOCALIZAÇÃO'),
           SizedBox(height: MediaQuery.of(context).size.height * 0.195),
-          const ButtonDesign(text: 'CONFIRMAR')
+          ButtonDesign(text: 'CADASTRAR', action: () {})
         ],
       ),
     );

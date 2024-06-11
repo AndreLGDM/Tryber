@@ -26,7 +26,7 @@ class RegisterTrough extends StatelessWidget {
           SizedBox(height: MediaQuery.of(context).size.height * 0.03),
           const InputDesign(text: 'TIPO DE RAÇÃO'),
           SizedBox(height: MediaQuery.of(context).size.height * 0.055),
-          const ButtonDesign(text: 'CONFIRMAR')
+          ButtonDesign(text: 'CONFIRMAR', action: () {})
         ],
       ),
     );

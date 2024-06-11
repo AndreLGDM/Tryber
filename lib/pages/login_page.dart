@@ -5,7 +5,9 @@ import 'package:tryber/models/input_password.dart';
 import 'package:tryber/models/text_button_design.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+  const LoginPage(this.login, {super.key});
+
+  final void Function() login;
 
   @override
   Widget build(BuildContext context) {
@@ -31,12 +33,12 @@ class LoginPage extends StatelessWidget {
             SizedBox(height: screenSize.height * 0.05),
             const InputPassword(),
             SizedBox(height: screenSize.height * 0.06),
-            const ButtonDesign(text: 'LOGIN'),
+            ButtonDesign(text: 'LOGIN', action: login),
             SizedBox(height: screenSize.height * 0.02),
             const TextButtonDesign('esqueceu_senha_login',
                 text: 'Esqueceu a Senha ?'),
             SizedBox(height: screenSize.height * 0.02),
-            const ButtonDesign(text: 'CADASTRAR'),
+            ButtonDesign(text: 'CADASTRAR', action: login),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

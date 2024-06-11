@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:tryber/models/quiz_design.dart';
 
 class FarmPage extends StatelessWidget {
-  const FarmPage({super.key});
+  const FarmPage(this.novoCadastro, {super.key});
+
+  final void Function() novoCadastro;
 
   @override
   Widget build(BuildContext context) {
@@ -41,10 +43,13 @@ class FarmPage extends StatelessWidget {
                       bottom: constraints.maxHeight *
                           0.1, // 10% da altura disponível
                     ),
-                    child: const Icon(
-                      Icons.add_circle_outline,
-                      color: Color(0xFF2DBCB6),
-                      size: 80,
+                    child: IconButton(
+                      onPressed: novoCadastro,
+                      icon: Icon(
+                        Icons.add_circle_outline,
+                        size: MediaQuery.of(context).size.height * 0.09,
+                      ),
+                      color: const Color(0xFF2DBCB6),
                     ),
                   ),
                 ],

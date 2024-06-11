@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tryber/models/button_design.dart';
+import 'package:tryber/models/custom_dropdown.dart';
 import 'package:tryber/models/input_design.dart';
 
 class RegisterPicket extends StatelessWidget {
@@ -23,8 +24,10 @@ class RegisterPicket extends StatelessWidget {
           const InputDesign(text: 'TAMANHO'),
           SizedBox(height: MediaQuery.of(context).size.height * 0.03),
           const InputDesign(text: 'DESCRIÇÃO DO PIQUETE'),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+          const CustomDropdownWidget(list: ['Gado de Corte', 'Gado de Leite']),
           SizedBox(height: MediaQuery.of(context).size.height * 0.16),
-          const ButtonDesign(text: 'CONFIRMAR')
+          ButtonDesign(text: 'CONFIRMAR', action: () {})
         ],
       ),
     );
