@@ -19,10 +19,13 @@ class ButtonDesign extends StatelessWidget {
               side: const BorderSide(color: Color(0xFF2DBCB6), width: 2.5),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20))),
-          child: Text(
-            text,
-            style: GoogleFonts.kanit(fontSize: 24),
-            textAlign: TextAlign.center,
+          child: Expanded(
+            child: Text(
+              text,
+              style: GoogleFonts.kanit(
+                  fontSize: MediaQuery.of(context).size.height * 0.025),
+              textAlign: TextAlign.center,
+            ),
           )),
     );
   }

@@ -3,6 +3,7 @@ import 'package:tryber/pages/farm_page.dart';
 import 'package:tryber/pages/login_page.dart';
 import 'package:tryber/pages/register_farm.dart';
 import 'package:tryber/pages/register_picket.dart';
+import 'package:tryber/pages/register_user.dart';
 
 class BodyDesign extends StatefulWidget {
   const BodyDesign({super.key});
@@ -45,13 +46,13 @@ class _BodyDesignState extends State<BodyDesign> {
           children: [
             Image.asset(
               'assets/images/margem.png',
-              height: 65,
+              height: MediaQuery.of(context).size.height * 0.065,
               fit: BoxFit.cover,
             ),
             Expanded(
               child: Container(
                 color: const Color(0xFFFFFFFF),
-                child: const RegisterPicket(),
+                child: screenWidget,
               ),
             ),
           ],
