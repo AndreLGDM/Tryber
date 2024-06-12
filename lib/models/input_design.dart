@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class InputDesign extends StatelessWidget {
-  const InputDesign({super.key, required this.text});
+  const InputDesign({super.key, required this.text, this.controller});
 
   final String text;
+  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
@@ -13,6 +14,7 @@ class InputDesign extends StatelessWidget {
       child: TextFormField(
         cursorColor: const Color(0xFF2DBCB6),
         cursorWidth: MediaQuery.of(context).size.width * 0.002,
+        controller: controller,
         decoration: InputDecoration(
           labelText: text,
           labelStyle: GoogleFonts.kanit(

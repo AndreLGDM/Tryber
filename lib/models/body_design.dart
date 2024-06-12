@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:tryber/pages/farm_page.dart';
 import 'package:tryber/pages/login_page.dart';
 import 'package:tryber/pages/register_farm.dart';
-import 'package:tryber/pages/register_picket.dart';
-import 'package:tryber/pages/register_user.dart';
 
 class BodyDesign extends StatefulWidget {
   const BodyDesign({super.key});
@@ -35,7 +33,7 @@ class _BodyDesignState extends State<BodyDesign> {
         ? LoginPage(login)
         : activeScreen == 'farm-page'
             ? FarmPage(navegarCadastrarFazenda)
-            : const RegisterFarm();
+            : RegisterFarm();
     return MaterialApp(
       home: Scaffold(
         resizeToAvoidBottomInset: true,
