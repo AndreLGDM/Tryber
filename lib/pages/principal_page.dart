@@ -41,9 +41,7 @@ class PrincipalPage extends StatelessWidget {
                   text: 'EDITAR FAZENDA'),
               const SizedBox(height: 30),
               QuizDesign(
-                  action: () {
-                    changeScreen('report-page');
-                  },
+                  action: () {},
                   icon: 'assets/images/paper.png',
                   text: 'RELATORIOS'),
               const SizedBox(height: 30),
@@ -55,7 +53,9 @@ class PrincipalPage extends StatelessWidget {
                   text: 'CADASTRAR ANIMAL'),
               const SizedBox(height: 30),
               QuizDesign(
-                  action: () {},
+                  action: () {
+                    changeScreen('register-trough');
+                  },
                   icon: 'assets/images/cow_eating.png',
                   text: 'CADASTRAR COCHO'),
               const SizedBox(height: 30),
@@ -65,9 +65,11 @@ class PrincipalPage extends StatelessWidget {
                   text: 'VINCULAR EQUIPAMENTO'),
               const SizedBox(height: 30),
               QuizDesign(
-                  action: () {},
+                  action: () {
+                    changeScreen('picket-page');
+                  },
                   icon: 'assets/images/piquete.png',
-                  text: 'ADCIONAR PIQUETE'),
+                  text: 'PIQUETE'),
             ],
           ),
         ),

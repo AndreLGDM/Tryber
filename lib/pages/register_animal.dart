@@ -6,9 +6,10 @@ import 'package:tryber/models/custom_dropdown.dart';
 import 'package:tryber/models/input_design.dart';
 
 class RegisterAnimal extends StatelessWidget {
-  RegisterAnimal(this.cadastrado, {super.key});
+  RegisterAnimal(this.cadastrado, {super.key, required this.back});
 
   void Function() cadastrado;
+  void Function(String) back;
   String? selectedType;
   final TextEditingController idBrincoController = TextEditingController();
   final TextEditingController pesoController = TextEditingController();
@@ -21,8 +22,8 @@ class RegisterAnimal extends StatelessWidget {
 
       if (tipo.isNotEmpty && idBrinco.isNotEmpty && peso.isNotEmpty) {
         addAnimal(tipo, idBrinco, peso);
-        cadastrado();
 
+        cadastrado();
         idBrincoController.clear();
         pesoController.clear();
       }
@@ -35,7 +36,9 @@ class RegisterAnimal extends StatelessWidget {
           Container(
             alignment: Alignment.centerLeft,
             child: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  back('principal-page');
+                },
                 icon: const Icon(
                   Icons.arrow_back_rounded,
                   color: Colors.black,
@@ -45,8 +48,9 @@ class RegisterAnimal extends StatelessWidget {
           SizedBox(height: MediaQuery.of(context).size.height * 0.01),
           Text(
             'CADASTRAR ANIMAL',
-            style:
-                GoogleFonts.kanit(color: const Color(0xFF2DBCB6), fontSize: 36),
+            style: GoogleFonts.kanit(
+                color: const Color(0xFF2DBCB6),
+                fontSize: MediaQuery.of(context).size.width * 0.083),
           ),
           SizedBox(height: MediaQuery.of(context).size.height * 0.075),
           CustomDropdownWidget(
@@ -63,9 +67,9 @@ class RegisterAnimal extends StatelessWidget {
             },
           ),
           SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-          const InputDesign(text: 'ID DO BRINCO'),
+          InputDesign(text: 'ID DO BRINCO', controller: idBrincoController),
           SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-          const InputDesign(text: 'PESO'),
+          InputDesign(text: 'PESO', controller: pesoController),
           SizedBox(height: MediaQuery.of(context).size.height * 0.12),
           ButtonDesign(text: 'CONFIRMAR', action: cadastrarAnimal)
         ],

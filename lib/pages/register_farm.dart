@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tryber/data/list_manipulate.dart';
 import 'package:tryber/models/button_design.dart';
+import 'package:tryber/models/farm_info.dart';
+import 'package:tryber/models/farm_info_service.dart';
 import 'package:tryber/models/input_design.dart';
+import 'package:tryber/models/json_manager.dart';
 
 class RegisterFarm extends StatefulWidget {
   const RegisterFarm(this.changePage, {super.key, required this.back});
@@ -30,6 +33,7 @@ class _RegisterFarmState extends State<RegisterFarm> {
       if (nome.isNotEmpty && descricao.isNotEmpty && localizacao.isNotEmpty) {
         setState(() {
           addFarm(nome, descricao, localizacao);
+          FarmInfoService().saveFarmInfoList(getAllFarms());
           widget.changePage();
         });
 
@@ -58,8 +62,9 @@ class _RegisterFarmState extends State<RegisterFarm> {
           SizedBox(height: MediaQuery.of(context).size.height * 0.01),
           Text(
             'CADASTRAR FAZENDA',
-            style:
-                GoogleFonts.kanit(color: const Color(0xFF2DBCB6), fontSize: 36),
+            style: GoogleFonts.kanit(
+                color: const Color(0xFF2DBCB6),
+                fontSize: MediaQuery.of(context).size.width * 0.083),
           ),
           SizedBox(height: MediaQuery.of(context).size.height * 0.075),
           InputDesign(text: 'NOME', controller: nomeController),

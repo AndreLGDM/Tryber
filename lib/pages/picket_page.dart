@@ -1,38 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:tryber/models/farm_info.dart';
-import 'package:tryber/models/farm_info_service.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:tryber/models/quiz_design.dart';
 import 'package:tryber/data/list_manipulate.dart';
+import 'package:tryber/models/picket_info.dart';
 
-class FarmPage extends StatefulWidget {
-  const FarmPage(this.novoCadastro, this.abrirFazenda, {super.key});
+class PicketPage extends StatelessWidget {
+  const PicketPage(this.novoCadastro, {super.key, required this.back});
 
   final void Function() novoCadastro;
-  final void Function() abrirFazenda;
-
-  @override
-  State<StatefulWidget> createState() {
-    return _FarmPageState();
-  }
-}
-
-class _FarmPageState extends State<FarmPage> {
-  late FarmInfoService farmInfoService;
-  List<FarmInfo> farms = [];
-
-  @override
-  void initState() {
-    super.initState();
-    farmInfoService = FarmInfoService();
-    loadFarmInfo();
-  }
-
-  Future<void> loadFarmInfo() async {
-    List<FarmInfo> loadedFarms = await farmInfoService.loadFarmInfoList();
-    setState(() {
-      farms = loadedFarms;
-    });
-  }
+  final void Function(String) back;
 
   @override
   Widget build(BuildContext context) {
@@ -40,22 +16,26 @@ class _FarmPageState extends State<FarmPage> {
       builder: (context, constraints) {
         return Column(
           children: [
+            SizedBox(height: MediaQuery.of(context).size.height * 0.02),
             Container(
-              height: constraints.maxHeight * 0.1,
-              alignment: Alignment.topLeft,
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(8, 8, 5, 0),
-                child: Transform.scale(
-                  scale: 1,
-                  child: const Icon(
-                    Icons.account_circle,
-                    size: 70,
-                    color: Color(0xFF4C5C65),
-                  ),
-                ),
-              ),
+              alignment: Alignment.centerLeft,
+              child: IconButton(
+                  onPressed: () {
+                    back('principal-page');
+                  },
+                  icon: const Icon(
+                    Icons.arrow_back_rounded,
+                    color: Colors.black,
+                    size: 30,
+                  )),
             ),
-            SizedBox(height: constraints.maxHeight * 0.03),
+            SizedBox(height: constraints.maxHeight * 0.15),
+            Text(
+              'PIQUETE',
+              style: GoogleFonts.kanit(
+                  color: const Color(0xFF2DBCB6), fontSize: 36),
+            ),
+            SizedBox(height: constraints.maxHeight * 0.08),
             Expanded(
               child: SizedBox(
                 height: MediaQuery.of(context).size.height *
@@ -63,13 +43,13 @@ class _FarmPageState extends State<FarmPage> {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      for (final farmInfo in farms)
+                      for (final PicketInfo in pickets)
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
                           child: QuizDesign(
-                            action: widget.abrirFazenda,
-                            icon: 'assets/images/casinha.png',
-                            text: farmInfo.nome,
+                            action: () {},
+                            icon: 'assets/images/piquete.png',
+                            text: PicketInfo.nome,
                           ),
                         ),
                     ],
@@ -84,7 +64,7 @@ class _FarmPageState extends State<FarmPage> {
                     constraints.maxHeight * 0.02, // 10% da altura disponível
               ),
               child: IconButton(
-                onPressed: widget.novoCadastro,
+                onPressed: novoCadastro,
                 icon: Icon(
                   Icons.add_circle_outline,
                   size: MediaQuery.of(context).size.height * 0.09,

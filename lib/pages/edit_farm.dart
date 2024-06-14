@@ -31,24 +31,53 @@ class EditFarm extends StatelessWidget {
           ),
           SizedBox(height: MediaQuery.of(context).size.height * 0.01),
           Text(
-            'CADASTRAR FAZENDA',
+            'EDITAR FAZENDA',
             style:
                 GoogleFonts.kanit(color: const Color(0xFF2DBCB6), fontSize: 36),
           ),
           SizedBox(height: MediaQuery.of(context).size.height * 0.075),
-          InputDesign(text: 'NOME', controller: nomeController),
-          SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-          InputDesign(
-            text: 'DESCRIÇÃO',
-            controller: descricaoController,
+          Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(40, 0, 0, 0),
+                child: InputDesign(text: 'NOME', controller: nomeController),
+              ),
+              const Padding(
+                padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
+                child: Icon(Icons.edit),
+              )
+            ],
           ),
           SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-          InputDesign(
-            text: 'LOCALIZAÇÃO',
-            controller: localizacaoController,
+          Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(40, 0, 0, 0),
+                child: InputDesign(
+                    text: 'DESCRIÇÃO', controller: descricaoController),
+              ),
+              const Padding(
+                padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
+                child: Icon(Icons.edit),
+              )
+            ],
+          ),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+          Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(40, 0, 0, 0),
+                child: InputDesign(
+                    text: 'LOCALIZAÇÃO', controller: localizacaoController),
+              ),
+              const Padding(
+                padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
+                child: Icon(Icons.edit),
+              )
+            ],
           ),
           SizedBox(height: MediaQuery.of(context).size.height * 0.195),
-          ButtonDesign(text: 'CADASTRAR', action: () {})
+          ButtonDesign(text: 'SALVAR', action: () {})
         ],
       ),
     );

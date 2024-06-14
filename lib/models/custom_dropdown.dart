@@ -6,7 +6,7 @@ class CustomDropdownWidget extends StatefulWidget {
       {super.key, required this.list, required this.onChanged});
 
   final List<String> list;
-  final Function(String?) onChanged;
+  final Function(String) onChanged;
 
   @override
   State<StatefulWidget> createState() {
@@ -29,8 +29,10 @@ class _CustomDropdownWidgetState extends State<CustomDropdownWidget> {
     setState(() {
       if (newValue != null) {
         valueChoose = newValue;
+        widget.onChanged(newValue);
       } else {
         valueChoose = null;
+        widget.onChanged('');
       }
     });
   }

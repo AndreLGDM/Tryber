@@ -1,9 +1,9 @@
 class FarmInfo {
-  FarmInfo(this.nome, this.descricao, this.localizacao);
-
   final String nome;
   final String descricao;
   final String localizacao;
+
+  FarmInfo(this.nome, this.descricao, this.localizacao);
 
   Map<String, dynamic> toJson() {
     return {
@@ -11,6 +11,14 @@ class FarmInfo {
       'descricao': descricao,
       'localizacao': localizacao,
     };
+  }
+
+  factory FarmInfo.fromJson(Map<String, dynamic> json) {
+    return FarmInfo(
+      json['nome'],
+      json['descricao'],
+      json['localizacao'],
+    );
   }
 
   @override

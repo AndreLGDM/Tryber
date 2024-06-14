@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:tryber/pages/edit_farm.dart';
 import 'package:tryber/pages/farm_page.dart';
 import 'package:tryber/pages/login_page.dart';
+import 'package:tryber/pages/picket_page.dart';
 import 'package:tryber/pages/principal_page.dart';
 import 'package:tryber/pages/recovey_page.dart';
+import 'package:tryber/pages/register_animal.dart';
 import 'package:tryber/pages/register_farm.dart';
+import 'package:tryber/pages/register_picket.dart';
+import 'package:tryber/pages/register_trough.dart';
 import 'package:tryber/pages/register_user.dart';
 
 class BodyDesign extends StatefulWidget {
@@ -42,6 +47,12 @@ class _BodyDesignState extends State<BodyDesign> {
     });
   }
 
+  void navegarCadastrarPicket() {
+    setState(() {
+      activeScreen = 'register-picket';
+    });
+  }
+
   void clicarFazenda() {
     setState(() {
       activeScreen = 'principal-page';
@@ -68,18 +79,27 @@ class _BodyDesignState extends State<BodyDesign> {
 
   @override
   Widget build(BuildContext context) {
-    Widget screenWidget = activeScreen == 'login-screen'
-        ? LoginPage(login, cadastrarCliente, recuperacaoSenha)
-        : activeScreen == 'register-user'
-            ? RegisterUser(clienteCadastrado, back: changeScreenWithParam)
-            : activeScreen == 'recovery-page'
-                ? RecoveyPage(back: changeScreenWithParam)
-                : activeScreen == 'farm-page'
-                    ? FarmPage(navegarCadastrarFazenda, clicarFazenda)
-                    : activeScreen == 'register-farm'
-                        ? RegisterFarm(cadastrarFazenda,
-                            back: changeScreenWithParam)
-                        : PrincipalPage(changeScreen: changeScreenWithParam);
+    final screenWidgets = {
+      'login-screen': LoginPage(login, cadastrarCliente, recuperacaoSenha),
+      'register-user':
+          RegisterUser(clienteCadastrado, back: changeScreenWithParam),
+      'recovery-page': RecoveyPage(back: changeScreenWithParam),
+      'farm-page': FarmPage(navegarCadastrarFazenda, clicarFazenda),
+      'register-farm':
+          RegisterFarm(cadastrarFazenda, back: changeScreenWithParam),
+      'principal-page': PrincipalPage(changeScreen: changeScreenWithParam),
+      'edit-farm': EditFarm(back: changeScreenWithParam),
+      'register-animal':
+          RegisterAnimal(clicarFazenda, back: changeScreenWithParam),
+      'register-trough': RegisterTrough(back: changeScreenWithParam),
+      'register-picket': RegisterPicket(back: changeScreenWithParam),
+      'picket-page':
+          PicketPage(back: changeScreenWithParam, navegarCadastrarPicket),
+    };
+
+    Widget screenWidget = screenWidgets[activeScreen] ??
+        LoginPage(login, cadastrarCliente, recuperacaoSenha);
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       mainAxisSize: MainAxisSize.max,

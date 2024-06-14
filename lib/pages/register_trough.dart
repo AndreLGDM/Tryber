@@ -4,7 +4,9 @@ import 'package:tryber/models/button_design.dart';
 import 'package:tryber/models/input_design.dart';
 
 class RegisterTrough extends StatelessWidget {
-  const RegisterTrough({super.key});
+  const RegisterTrough({super.key, required this.back});
+
+  final void Function(String) back;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +17,9 @@ class RegisterTrough extends StatelessWidget {
           Container(
             alignment: Alignment.centerLeft,
             child: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  back('principal-page');
+                },
                 icon: const Icon(
                   Icons.arrow_back_rounded,
                   color: Colors.black,
@@ -25,8 +29,9 @@ class RegisterTrough extends StatelessWidget {
           SizedBox(height: MediaQuery.of(context).size.height * 0.01),
           Text(
             'CADASTRAR COCHO',
-            style:
-                GoogleFonts.kanit(color: const Color(0xFF2DBCB6), fontSize: 36),
+            style: GoogleFonts.kanit(
+                color: const Color(0xFF2DBCB6),
+                fontSize: MediaQuery.of(context).size.width * 0.083),
           ),
           SizedBox(height: MediaQuery.of(context).size.height * 0.075),
           const InputDesign(text: 'CÓDIGO DO COCHO'),
