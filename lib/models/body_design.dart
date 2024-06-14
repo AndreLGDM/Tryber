@@ -54,7 +54,7 @@ class _BodyDesignState extends State<BodyDesign> {
     });
   }
 
-  void voltarTela(String text) {
+  void changeScreenWithParam(String text) {
     setState(() {
       activeScreen = text;
     });
@@ -71,14 +71,15 @@ class _BodyDesignState extends State<BodyDesign> {
     Widget screenWidget = activeScreen == 'login-screen'
         ? LoginPage(login, cadastrarCliente, recuperacaoSenha)
         : activeScreen == 'register-user'
-            ? RegisterUser(clienteCadastrado)
+            ? RegisterUser(clienteCadastrado, back: changeScreenWithParam)
             : activeScreen == 'recovery-page'
-                ? RecoveyPage(back: voltarTela)
+                ? RecoveyPage(back: changeScreenWithParam)
                 : activeScreen == 'farm-page'
                     ? FarmPage(navegarCadastrarFazenda, clicarFazenda)
                     : activeScreen == 'register-farm'
-                        ? RegisterFarm(cadastrarFazenda)
-                        : const PrincipalPage();
+                        ? RegisterFarm(cadastrarFazenda,
+                            back: changeScreenWithParam)
+                        : PrincipalPage(changeScreen: changeScreenWithParam);
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       mainAxisSize: MainAxisSize.max,

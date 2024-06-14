@@ -6,9 +6,10 @@ import 'package:tryber/models/button_design.dart';
 import 'package:tryber/models/input_password.dart';
 
 class RegisterUser extends StatelessWidget {
-  RegisterUser(this.cadastrado, {super.key});
+  RegisterUser(this.cadastrado, {super.key, required this.back});
 
   final void Function() cadastrado;
+  final void Function(String) back;
   final TextEditingController nomeController = TextEditingController();
   final TextEditingController sobrenomeController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
@@ -60,7 +61,9 @@ class RegisterUser extends StatelessWidget {
           Container(
             alignment: Alignment.centerLeft,
             child: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  back('login-screen');
+                },
                 icon: const Icon(
                   Icons.arrow_back_rounded,
                   color: Colors.black,

@@ -50,7 +50,7 @@ class LoginPage extends StatelessWidget {
       if (!clienteEncontrado) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
-            content: Text('Cliente não encontrado.'),
+            content: Text('usuario não encontrado.'),
             duration: Duration(seconds: 2),
           ),
         );

@@ -2,7 +2,7 @@ import 'package:tryber/models/farm_info.dart';
 import 'package:tryber/models/user_info.dart';
 import 'package:tryber/models/animal_info.dart';
 
-List<FarmInfo> farms = [];
+List<FarmInfo> farms = [FarmInfo('nome', 'descricao', 'localizacao')];
 
 void addFarm(String nome, String descricao, String localizacao) {
   farms.add(FarmInfo(nome, descricao, localizacao));

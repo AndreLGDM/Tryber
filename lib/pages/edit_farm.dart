@@ -1,44 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:tryber/data/list_manipulate.dart';
 import 'package:tryber/models/button_design.dart';
 import 'package:tryber/models/input_design.dart';
 
-class RegisterFarm extends StatefulWidget {
-  const RegisterFarm(this.changePage, {super.key, required this.back});
+class EditFarm extends StatelessWidget {
+  EditFarm({super.key, required this.back});
 
-  final void Function() changePage;
   final void Function(String) back;
-
-  @override
-  State<StatefulWidget> createState() {
-    return _RegisterFarmState();
-  }
-}
-
-class _RegisterFarmState extends State<RegisterFarm> {
   final TextEditingController nomeController = TextEditingController();
   final TextEditingController descricaoController = TextEditingController();
   final TextEditingController localizacaoController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    void cadastrarFazenda() {
-      final String nome = nomeController.text;
-      final String descricao = descricaoController.text;
-      final String localizacao = localizacaoController.text;
-
-      if (nome.isNotEmpty && descricao.isNotEmpty && localizacao.isNotEmpty) {
-        setState(() {
-          addFarm(nome, descricao, localizacao);
-          widget.changePage();
-        });
-
-        nomeController.clear();
-        descricaoController.clear();
-        localizacaoController.clear();
-      }
-    }
-
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -47,7 +21,7 @@ class _RegisterFarmState extends State<RegisterFarm> {
             alignment: Alignment.centerLeft,
             child: IconButton(
                 onPressed: () {
-                  widget.back('farm-page');
+                  back('principal-page');
                 },
                 icon: const Icon(
                   Icons.arrow_back_rounded,
@@ -74,7 +48,7 @@ class _RegisterFarmState extends State<RegisterFarm> {
             controller: localizacaoController,
           ),
           SizedBox(height: MediaQuery.of(context).size.height * 0.195),
-          ButtonDesign(text: 'CADASTRAR', action: cadastrarFazenda)
+          ButtonDesign(text: 'CADASTRAR', action: () {})
         ],
       ),
     );
