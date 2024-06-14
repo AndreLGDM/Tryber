@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 class InputPassword extends StatefulWidget {
-  const InputPassword({super.key});
+  const InputPassword(this.text, {super.key, required this.controller});
+
+  final String text;
+  final TextEditingController? controller;
 
   @override
   State<InputPassword> createState() {
@@ -16,17 +19,18 @@ class _InputPasswordState extends State<InputPassword> {
     return SizedBox(
       width: MediaQuery.of(context).size.width * 0.8,
       child: TextFormField(
+        controller: widget.controller,
         obscureText: isObscure,
-        decoration: const InputDecoration(
-          labelText: 'Senha',
-          floatingLabelStyle: TextStyle(color: Color(0xFF2DBCB6)),
-          enabledBorder: UnderlineInputBorder(
+        decoration: InputDecoration(
+          labelText: widget.text,
+          floatingLabelStyle: const TextStyle(color: Color(0xFF2DBCB6)),
+          enabledBorder: const UnderlineInputBorder(
             borderSide: BorderSide(color: Color(0xFF4C5C65)),
           ),
-          focusedBorder: UnderlineInputBorder(
+          focusedBorder: const UnderlineInputBorder(
             borderSide: BorderSide(color: Color(0xFF2DBCB6)),
           ),
-          disabledBorder: UnderlineInputBorder(
+          disabledBorder: const UnderlineInputBorder(
               borderSide: BorderSide(color: Color(0xFF4C5C65))),
         ),
       ),

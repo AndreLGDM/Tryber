@@ -4,4 +4,12 @@ class FarmInfo {
   final String nome;
   final String descricao;
   final String localizacao;
+
+  Map<String, dynamic> toJson() {
+    return {
+      'nome': nome,
+      'descricao': descricao,
+      'localizacao': localizacao,
+    };
+  }
 }

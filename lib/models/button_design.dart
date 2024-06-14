@@ -23,7 +23,7 @@ class ButtonDesign extends StatelessWidget {
             child: Text(
               text,
               style: GoogleFonts.kanit(
-                  fontSize: MediaQuery.of(context).size.height * 0.025),
+                  fontSize: MediaQuery.of(context).size.height * 0.024),
               textAlign: TextAlign.center,
             ),
           )),

@@ -1,18 +1,61 @@
 import 'package:flutter/material.dart';
+import 'package:tryber/data/list_manipulate.dart';
 import 'package:tryber/models/button_design.dart';
 import 'package:tryber/models/input_design.dart';
 import 'package:tryber/models/input_password.dart';
 import 'package:tryber/models/text_button_design.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage(this.login, {super.key});
+  const LoginPage(this.login, this.cadastrar, this.recuperar, {super.key});
 
   final void Function() login;
+  final void Function() cadastrar;
+  final void Function() recuperar;
 
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
     var padding = screenSize.width * 0.1;
+    final TextEditingController emailController = TextEditingController();
+    final TextEditingController senhaController = TextEditingController();
+
+    void verificarLogin() {
+      String email = emailController.text;
+      String senha = senhaController.text;
+
+      bool clienteEncontrado = false;
+      for (var cliente in users) {
+        if (cliente.email == email) {
+          clienteEncontrado = true;
+          if (cliente.senha == senha) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Login bem-sucedido.'),
+                duration: Duration(seconds: 2),
+              ),
+            );
+            login();
+          } else {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Senha incorreta.'),
+                duration: Duration(seconds: 2),
+              ),
+            );
+          }
+          break;
+        }
+      }
+
+      if (!clienteEncontrado) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Cliente não encontrado.'),
+            duration: Duration(seconds: 2),
+          ),
+        );
+      }
+    }
 
     return SingleChildScrollView(
       child: Padding(
@@ -29,16 +72,16 @@ class LoginPage extends StatelessWidget {
               ),
             ),
             SizedBox(height: screenSize.height * 0.1),
-            const InputDesign(text: 'Email'),
+            InputDesign(text: 'EMAIL', controller: emailController),
             SizedBox(height: screenSize.height * 0.05),
-            const InputPassword(),
+            InputPassword('SENHA', controller: senhaController),
             SizedBox(height: screenSize.height * 0.06),
-            ButtonDesign(text: 'LOGIN', action: login),
+            ButtonDesign(text: 'LOGIN', action: verificarLogin),
             SizedBox(height: screenSize.height * 0.02),
-            const TextButtonDesign('esqueceu_senha_login',
+            TextButtonDesign(recuperar, 'esqueceu_senha_login',
                 text: 'Esqueceu a Senha ?'),
             SizedBox(height: screenSize.height * 0.02),
-            ButtonDesign(text: 'CADASTRAR', action: login),
+            ButtonDesign(text: 'CADASTRAR', action: cadastrar),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -50,9 +93,9 @@ class LoginPage extends StatelessWidget {
                     fit: BoxFit.cover,
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
-                  child: TextButtonDesign('logar_google_login',
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
+                  child: TextButtonDesign(() {}, 'logar_google_login',
                       text: 'Logar com o Google'),
                 )
               ],

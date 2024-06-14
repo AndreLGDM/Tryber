@@ -2,10 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class QuizDesign extends StatelessWidget {
-  const QuizDesign({super.key, required this.icon, required this.text});
+  const QuizDesign(
+      {super.key,
+      required this.icon,
+      required this.text,
+      required this.action});
 
   final String text;
   final String icon;
+  final void Function() action;
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -14,7 +20,7 @@ class QuizDesign extends StatelessWidget {
           height: MediaQuery.of(context).size.height * 0.16,
           width: MediaQuery.of(context).size.width * 0.9,
           child: OutlinedButton(
-            onPressed: () {},
+            onPressed: action,
             style: OutlinedButton.styleFrom(
                 foregroundColor: const Color(0xFF4C5C65),
                 side: const BorderSide(width: 2.5, color: Color(0xFF4C5C65)),

@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CustomDropdownWidget extends StatefulWidget {
-  const CustomDropdownWidget({super.key, required this.list});
+  const CustomDropdownWidget(
+      {super.key, required this.list, required this.onChanged});
 
   final List<String> list;
+  final Function(String?) onChanged;
 
   @override
   State<StatefulWidget> createState() {

@@ -4,12 +4,27 @@ import 'package:tryber/models/button_design.dart';
 import 'package:tryber/models/input_design.dart';
 
 class RecoveyPage extends StatelessWidget {
-  const RecoveyPage({super.key});
+  const RecoveyPage({super.key, required this.back});
+
+  final void Function(String) back;
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(mainAxisSize: MainAxisSize.min, children: [
+        SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+        Container(
+          alignment: Alignment.centerLeft,
+          child: IconButton(
+              onPressed: () {
+                back('login-screen');
+              },
+              icon: const Icon(
+                Icons.arrow_back_rounded,
+                color: Colors.black,
+                size: 30,
+              )),
+        ),
         SizedBox(height: MediaQuery.of(context).size.height * 0.11),
         Center(
           child: SizedBox(

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:tryber/data/farm.dart';
+import 'package:tryber/data/list_manipulate.dart';
 import 'package:tryber/models/button_design.dart';
-import 'package:tryber/models/farm_info.dart';
 import 'package:tryber/models/input_design.dart';
 
 class RegisterFarm extends StatefulWidget {
-  const RegisterFarm({super.key});
+  const RegisterFarm(this.changePage, {super.key});
+
+  final void Function() changePage;
 
   @override
   State<StatefulWidget> createState() {
@@ -27,7 +28,8 @@ class _RegisterFarmState extends State<RegisterFarm> {
 
       if (nome.isNotEmpty && descricao.isNotEmpty && localizacao.isNotEmpty) {
         setState(() {
-          aumentarFazendas(nome, descricao, localizacao);
+          addFarm(nome, descricao, localizacao);
+          widget.changePage();
         });
 
         nomeController.clear();
@@ -39,7 +41,18 @@ class _RegisterFarmState extends State<RegisterFarm> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          SizedBox(height: MediaQuery.of(context).size.height * 0.08),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+          Container(
+            alignment: Alignment.centerLeft,
+            child: IconButton(
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.arrow_back_rounded,
+                  color: Colors.black,
+                  size: 30,
+                )),
+          ),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.01),
           Text(
             'CADASTRAR FAZENDA',
             style:

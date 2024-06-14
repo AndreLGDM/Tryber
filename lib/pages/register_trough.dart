@@ -11,7 +11,18 @@ class RegisterTrough extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          SizedBox(height: MediaQuery.of(context).size.height * 0.08),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+          Container(
+            alignment: Alignment.centerLeft,
+            child: IconButton(
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.arrow_back_rounded,
+                  color: Colors.black,
+                  size: 30,
+                )),
+          ),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.01),
           Text(
             'CADASTRAR COCHO',
             style:

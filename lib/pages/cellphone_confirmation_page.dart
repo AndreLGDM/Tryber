@@ -10,6 +10,17 @@ class CellphoneConfirmationPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(mainAxisSize: MainAxisSize.min, children: [
+        SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+        Container(
+          alignment: Alignment.centerLeft,
+          child: IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.arrow_back_rounded,
+                color: Colors.black,
+                size: 30,
+              )),
+        ),
         SizedBox(height: MediaQuery.of(context).size.height * 0.1),
         Center(
           child: SizedBox(
@@ -39,7 +50,7 @@ class CellphoneConfirmationPage extends StatelessWidget {
         SizedBox(height: MediaQuery.of(context).size.height * 0.075),
         ButtonDesign(text: 'CONFIRMAR', action: () {}),
         SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-        const TextButtonDesign('button_confirmar_pelo_celular',
+        TextButtonDesign(() {}, 'button_confirmar_pelo_celular',
             text: 'Confirmar pelo celular')
       ]),
     );

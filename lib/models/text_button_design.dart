@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class TextButtonDesign extends StatelessWidget {
-  const TextButtonDesign(this.chave, {super.key, required this.text});
+  const TextButtonDesign(this.action, this.chave,
+      {super.key, required this.text});
 
   final String text;
   final String chave;
+  final void Function() action;
 
   @override
   Widget build(BuildContext context) {
     return TextButton(
-        onPressed: () {},
+        onPressed: action,
         style: TextButton.styleFrom(
             textStyle: GoogleFonts.kanit(),
             overlayColor: Colors.transparent,

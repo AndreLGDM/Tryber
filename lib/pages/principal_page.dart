@@ -27,28 +27,39 @@ class PrincipalPage extends StatelessWidget {
         ),
       ),
       const SizedBox(height: 15),
-      const Expanded(
+      Expanded(
         child: SingleChildScrollView(
           child: Column(
             children: [
               QuizDesign(
-                  icon: 'assets/images/casinha.png', text: 'EDITAR FAZENDA'),
-              SizedBox(height: 30),
-              QuizDesign(icon: 'assets/images/paper.png', text: 'RELATORIOS'),
-              SizedBox(height: 30),
+                  action: () {},
+                  icon: 'assets/images/casinha.png',
+                  text: 'EDITAR FAZENDA'),
+              const SizedBox(height: 30),
               QuizDesign(
-                  icon: 'assets/images/cow.png', text: 'CADASTRAR ANIMAL'),
-              SizedBox(height: 30),
+                  action: () {},
+                  icon: 'assets/images/paper.png',
+                  text: 'RELATORIOS'),
+              const SizedBox(height: 30),
               QuizDesign(
+                  action: () {},
+                  icon: 'assets/images/cow.png',
+                  text: 'CADASTRAR ANIMAL'),
+              const SizedBox(height: 30),
+              QuizDesign(
+                  action: () {},
                   icon: 'assets/images/cow_eating.png',
                   text: 'CADASTRAR COCHO'),
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               QuizDesign(
+                  action: () {},
                   icon: 'assets/images/tractor.png',
                   text: 'VINCULAR EQUIPAMENTO'),
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               QuizDesign(
-                  icon: 'assets/images/piquete.png', text: 'ADCIONAR PIQUETE'),
+                  action: () {},
+                  icon: 'assets/images/piquete.png',
+                  text: 'ADCIONAR PIQUETE'),
             ],
           ),
         ),
