@@ -12,4 +12,9 @@ class AnimalInfo {
       'peso': peso,
     };
   }
+
+  @override
+  String toString() {
+    return 'AnimalInfo { tipo: $tipo, idBrinco: $idBrinco, peso: $peso }';
+  }
 }

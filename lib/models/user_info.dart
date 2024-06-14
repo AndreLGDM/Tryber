@@ -19,4 +19,9 @@ class UserInfo {
       'confirmarSenha': confirmarSenha,
     };
   }
+
+  @override
+  String toString() {
+    return 'UserInfo { nome: $nome, sobrenome: $sobrenome, email: $email, telefone: $telefone}';
+  }
 }

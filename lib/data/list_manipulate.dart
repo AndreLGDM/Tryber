@@ -8,7 +8,9 @@ void addFarm(String nome, String descricao, String localizacao) {
   farms.add(FarmInfo(nome, descricao, localizacao));
 }
 
-List<UserInfo> users = [];
+List<UserInfo> users = [
+  UserInfo('André', 'Medeiros', 'teste@example.com', '32', 'senha', 'senha')
+];
 
 void addUser(String nome, String sobrenome, String email, String telefone,
     String senha, String confirmarSenha) {

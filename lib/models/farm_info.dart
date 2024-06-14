@@ -12,4 +12,9 @@ class FarmInfo {
       'localizacao': localizacao,
     };
   }
+
+  @override
+  String toString() {
+    return 'FarmInfo { nome: $nome, descricao: $descricao, localizacao: $localizacao }';
+  }
 }
