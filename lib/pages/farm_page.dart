@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:tryber/models/farm_info.dart';
-import 'package:tryber/models/farm_info_service.dart';
+import 'package:tryber/Services/json_service.dart';
 import 'package:tryber/models/quiz_design.dart';
-import 'package:tryber/data/list_manipulate.dart';
+import 'package:tryber/data/global_user.dart';
+import 'package:tryber/models/user_info.dart';
 
 class FarmPage extends StatefulWidget {
   const FarmPage(this.novoCadastro, this.abrirFazenda, {super.key});
@@ -17,18 +18,22 @@ class FarmPage extends StatefulWidget {
 }
 
 class _FarmPageState extends State<FarmPage> {
-  late FarmInfoService farmInfoService;
-  List<FarmInfo> farms = [];
+  late GenericService farmInfoService;
+  List farms = usuarioLogado?.farms ?? [];
 
   @override
   void initState() {
     super.initState();
-    farmInfoService = FarmInfoService();
-    loadFarmInfo();
+    farmInfoService = GenericService<FarmInfo>(
+      fromJson: FarmInfo.fromJson,
+      toJson: (farmInfo) => farmInfo.toJson(),
+    );
+    loadFarms();
   }
 
-  Future<void> loadFarmInfo() async {
-    List<FarmInfo> loadedFarms = await farmInfoService.loadFarmInfoList();
+  Future<void> loadFarms() async {
+    List loadedFarms = await farmInfoService
+        .loadList('${usuarioLogado?.nome}_${usuarioLogado?.id}.json');
     setState(() {
       farms = loadedFarms;
     });

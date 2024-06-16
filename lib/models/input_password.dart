@@ -19,6 +19,8 @@ class _InputPasswordState extends State<InputPassword> {
     return SizedBox(
       width: MediaQuery.of(context).size.width * 0.8,
       child: TextFormField(
+        cursorColor: const Color(0xFF2DBCB6),
+        cursorWidth: MediaQuery.of(context).size.width * 0.002,
         controller: widget.controller,
         obscureText: isObscure,
         decoration: InputDecoration(

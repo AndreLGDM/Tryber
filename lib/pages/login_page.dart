@@ -1,16 +1,43 @@
 import 'package:flutter/material.dart';
-import 'package:tryber/data/list_manipulate.dart';
 import 'package:tryber/models/button_design.dart';
 import 'package:tryber/models/input_design.dart';
 import 'package:tryber/models/input_password.dart';
+import 'package:tryber/Services/json_service.dart';
 import 'package:tryber/models/text_button_design.dart';
+import 'package:tryber/models/user_info.dart';
+import 'package:tryber/data/global_user.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage(this.login, this.cadastrar, this.recuperar, {super.key});
 
   final void Function() login;
   final void Function() cadastrar;
   final void Function() recuperar;
+
+  @override
+  State<LoginPage> createState() {
+    return _LoginPageState();
+  }
+}
+
+class _LoginPageState extends State<LoginPage> {
+  late GenericService userService;
+  List users = [];
+
+  @override
+  void initState() {
+    super.initState();
+    userService = GenericService<UserInfo>(
+        fromJson: UserInfo.fromJson, toJson: (userInfo) => userInfo.toJson());
+    loadUserInfo();
+  }
+
+  Future<void> loadUserInfo() async {
+    List loadedUsers = await userService.loadList('user.json');
+    setState(() {
+      users = loadedUsers;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +61,10 @@ class LoginPage extends StatelessWidget {
                 duration: Duration(seconds: 2),
               ),
             );
-            login();
+            setState(() {
+              usuarioLogado = cliente;
+            });
+            widget.login();
           } else {
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
@@ -78,10 +108,10 @@ class LoginPage extends StatelessWidget {
             SizedBox(height: screenSize.height * 0.06),
             ButtonDesign(text: 'LOGIN', action: verificarLogin),
             SizedBox(height: screenSize.height * 0.02),
-            TextButtonDesign(recuperar, 'esqueceu_senha_login',
+            TextButtonDesign(widget.recuperar, 'esqueceu_senha_login',
                 text: 'Esqueceu a Senha ?'),
             SizedBox(height: screenSize.height * 0.02),
-            ButtonDesign(text: 'CADASTRAR', action: cadastrar),
+            ButtonDesign(text: 'CADASTRAR', action: widget.cadastrar),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:tryber/data/list_manipulate.dart';
 import 'package:tryber/models/button_design.dart';
 import 'package:tryber/models/farm_info.dart';
-import 'package:tryber/models/farm_info_service.dart';
+import 'package:tryber/data/global_user.dart';
+import 'package:tryber/Services/json_service.dart';
 import 'package:tryber/models/input_design.dart';
-import 'package:tryber/models/json_manager.dart';
 
 class RegisterFarm extends StatefulWidget {
   const RegisterFarm(this.changePage, {super.key, required this.back});
@@ -23,17 +22,45 @@ class _RegisterFarmState extends State<RegisterFarm> {
   final TextEditingController nomeController = TextEditingController();
   final TextEditingController descricaoController = TextEditingController();
   final TextEditingController localizacaoController = TextEditingController();
+  List farms = usuarioLogado?.farms ?? [];
+  late GenericService farmInfoService;
+
+  @override
+  void initState() {
+    super.initState();
+    farmInfoService = GenericService<FarmInfo>(
+      fromJson: FarmInfo.fromJson,
+      toJson: (farmInfo) => farmInfo.toJson(),
+    );
+    loadFarms();
+  }
+
+  Future<void> loadFarms() async {
+    List loadedFarms = await farmInfoService
+        .loadList('${usuarioLogado?.nome}_${usuarioLogado?.id}.json');
+    setState(() {
+      farms = loadedFarms;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    @override
     void cadastrarFazenda() {
       final String nome = nomeController.text;
       final String descricao = descricaoController.text;
       final String localizacao = localizacaoController.text;
 
       if (nome.isNotEmpty && descricao.isNotEmpty && localizacao.isNotEmpty) {
+        List<FarmInfo> fazendas = List.from(farms);
         setState(() {
-          addFarm(nome, descricao, localizacao);
-          FarmInfoService().saveFarmInfoList(getAllFarms());
+          fazendas.add(FarmInfo(nome, descricao, localizacao));
+
+          GenericService<FarmInfo>(
+                  toJson: (farmInfo) => farmInfo.toJson(),
+                  fromJson: FarmInfo.fromJson)
+              .saveList(
+                  fazendas, '${usuarioLogado?.nome}_${usuarioLogado?.id}.json');
           widget.changePage();
         });
 
