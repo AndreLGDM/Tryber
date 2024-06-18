@@ -73,6 +73,7 @@ flutter:
      - assets/images/tractor.png
      - assets/images/plus.png
      - assets/images/piquete.png
+     - assets/images/pdf.png
 
 flutter_icons:
   android: true

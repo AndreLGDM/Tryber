@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tryber/pages/edit_farm.dart';
 import 'package:tryber/pages/farm_page.dart';
+import 'package:tryber/pages/farm_report.dart';
 import 'package:tryber/pages/login_page.dart';
 import 'package:tryber/pages/picket_page.dart';
 import 'package:tryber/pages/principal_page.dart';
@@ -10,6 +11,7 @@ import 'package:tryber/pages/register_farm.dart';
 import 'package:tryber/pages/register_picket.dart';
 import 'package:tryber/pages/register_trough.dart';
 import 'package:tryber/pages/register_user.dart';
+import 'package:tryber/pages/report_page.dart';
 
 class BodyDesign extends StatefulWidget {
   const BodyDesign({super.key});
@@ -95,6 +97,7 @@ class _BodyDesignState extends State<BodyDesign> {
       'register-picket': RegisterPicket(back: changeScreenWithParam),
       'picket-page':
           PicketPage(back: changeScreenWithParam, navegarCadastrarPicket),
+      'report-page': ReportPage(back: changeScreenWithParam)
     };
 
     Widget screenWidget = screenWidgets[activeScreen] ??

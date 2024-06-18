@@ -32,8 +32,9 @@ class EditFarm extends StatelessWidget {
           SizedBox(height: MediaQuery.of(context).size.height * 0.01),
           Text(
             'EDITAR FAZENDA',
-            style:
-                GoogleFonts.kanit(color: const Color(0xFF2DBCB6), fontSize: 36),
+            style: GoogleFonts.kanit(
+                color: const Color(0xFF2DBCB6),
+                fontSize: MediaQuery.of(context).size.width * 0.083),
           ),
           SizedBox(height: MediaQuery.of(context).size.height * 0.075),
           Row(

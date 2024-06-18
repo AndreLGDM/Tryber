@@ -5,30 +5,85 @@ import 'package:tryber/models/button_design.dart';
 import 'package:tryber/models/custom_dropdown.dart';
 import 'package:tryber/models/input_design.dart';
 
-class RegisterAnimal extends StatelessWidget {
+class RegisterAnimal extends StatefulWidget {
   RegisterAnimal(this.cadastrado, {super.key, required this.back});
 
   void Function() cadastrado;
   void Function(String) back;
+
+  @override
+  State<RegisterAnimal> createState() {
+    return _RegisterAnimalState();
+  }
+}
+
+class _RegisterAnimalState extends State<RegisterAnimal> {
   String? selectedType;
+  String? selectedSubtype;
   final TextEditingController idBrincoController = TextEditingController();
   final TextEditingController pesoController = TextEditingController();
-  @override
-  Widget build(BuildContext context) {
-    void cadastrarAnimal() {
-      final String tipo = selectedType ?? '';
-      final String idBrinco = idBrincoController.text;
-      final String peso = pesoController.text;
+  List<String> subtypesList = [];
+  Key dropdownKey = UniqueKey();
 
-      if (tipo.isNotEmpty && idBrinco.isNotEmpty && peso.isNotEmpty) {
-        addAnimal(tipo, idBrinco, peso);
-
-        cadastrado();
-        idBrincoController.clear();
-        pesoController.clear();
-      }
+  void _updateSubtypesList(String type) {
+    List<String> newSubtypesList;
+    switch (type) {
+      case 'Bovino':
+        newSubtypesList = [
+          'Bezerro',
+          'Garrote',
+          'Novilho',
+          'Novilha',
+          'Boi',
+          'Touro',
+          'Vaca',
+        ];
+        break;
+      case 'Equino':
+        newSubtypesList = [
+          'Poldro',
+          'Potranca',
+          'Garanhão',
+          'Égua',
+          'Cavalo',
+        ];
+        break;
+      case 'Bubalino':
+        newSubtypesList = [
+          'Bezerro de búfalo',
+          'Novilho de búfalo',
+          'Búfalo',
+          'Búfala'
+        ];
+        break;
+      default:
+        newSubtypesList = [];
     }
 
+    setState(() {
+      subtypesList = newSubtypesList;
+      selectedSubtype = null;
+      dropdownKey = UniqueKey();
+    });
+  }
+
+  void cadastrarAnimal() {
+    final String tipo = selectedType ?? '';
+    final String subTipo = selectedSubtype ?? '';
+    final String idBrinco = idBrincoController.text;
+    final String peso = pesoController.text;
+
+    if (tipo.isNotEmpty && idBrinco.isNotEmpty && peso.isNotEmpty) {
+      addAnimal(tipo, idBrinco, peso);
+
+      widget.cadastrado();
+      idBrincoController.clear();
+      pesoController.clear();
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -37,7 +92,7 @@ class RegisterAnimal extends StatelessWidget {
             alignment: Alignment.centerLeft,
             child: IconButton(
                 onPressed: () {
-                  back('principal-page');
+                  widget.back('principal-page');
                 },
                 icon: const Icon(
                   Icons.arrow_back_rounded,
@@ -54,16 +109,24 @@ class RegisterAnimal extends StatelessWidget {
           ),
           SizedBox(height: MediaQuery.of(context).size.height * 0.075),
           CustomDropdownWidget(
+            text: 'TIPO',
             list: const [
-              'Bezerro',
-              'Cabrito',
-              'Cavalo',
-              'Galinha',
-              'Porco',
-              'Ovelha'
+              'Bovino',
+              'Equino',
+              'Bubalino',
             ],
             onChanged: (newValue) {
               selectedType = newValue;
+              _updateSubtypesList(newValue);
+            },
+          ),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+          CustomDropdownWidget(
+            key: dropdownKey,
+            text: 'SUBTIPO',
+            list: subtypesList,
+            onChanged: (newValue) {
+              selectedSubtype = newValue;
             },
           ),
           SizedBox(height: MediaQuery.of(context).size.height * 0.03),

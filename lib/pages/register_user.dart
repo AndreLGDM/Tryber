@@ -5,7 +5,7 @@ import 'package:tryber/models/button_design.dart';
 import 'package:tryber/models/input_password.dart';
 import 'package:tryber/Services/json_service.dart';
 import 'package:tryber/models/user_info.dart';
-import 'package:tryber/data/global_user.dart';
+import 'package:tryber/data/global_var.dart';
 
 class RegisterUser extends StatefulWidget {
   const RegisterUser(this.cadastrado, {super.key, required this.back});
@@ -149,7 +149,7 @@ class _RegisterUserState extends State<RegisterUser> {
     final uppercaseRegex = RegExp(r'[A-Z]');
     final numberRegex = RegExp(r'\d');
 
-    return password.length > 6 &&
+    return password.length >= 6 &&
         symbolRegex.hasMatch(password) &&
         uppercaseRegex.hasMatch(password) &&
         numberRegex.hasMatch(password);
@@ -216,8 +216,8 @@ class _RegisterUserState extends State<RegisterUser> {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text(
-                'A senha deve conter 6 dígitos incluindo ao menos um símbolo, uma letra maiúscula e um número.'),
-            duration: Duration(seconds: 2),
+                'A senha deve conter pelo menos 6 dígitos incluindo ao menos um símbolo, uma letra maiúscula e um número.'),
+            duration: Duration(seconds: 3, milliseconds: 5),
           ),
         );
         return;

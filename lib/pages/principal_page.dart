@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tryber/models/quiz_design.dart';
+import 'package:tryber/models/farm_box_design.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class PrincipalPage extends StatelessWidget {
   const PrincipalPage({super.key, required this.changeScreen});
@@ -12,59 +13,75 @@ class PrincipalPage extends StatelessWidget {
       Container(
         height: MediaQuery.of(context).size.height * 0.1,
         alignment: Alignment.topLeft,
-        child: Padding(
-          padding: EdgeInsets.fromLTRB(
-              MediaQuery.of(context).size.width * 0.02,
-              MediaQuery.of(context).size.height * 0.015,
-              MediaQuery.of(context).size.height * 0.015,
-              0),
-          child: Transform.scale(
-            scale: MediaQuery.of(context).size.height * 0.001,
-            child: const Icon(
-              Icons.account_circle,
-              size: 70,
-              color: Color(0xFF4C5C65),
+        child: Row(
+          children: [
+            Padding(
+              padding: EdgeInsets.fromLTRB(
+                  MediaQuery.of(context).size.width * 0.02,
+                  MediaQuery.of(context).size.height * 0.015,
+                  MediaQuery.of(context).size.height * 0.015,
+                  0),
+              child: Transform.scale(
+                scale: MediaQuery.of(context).size.height * 0.001,
+                child: const Icon(
+                  Icons.account_circle,
+                  size: 70,
+                  color: Color(0xFF4C5C65),
+                ),
+              ),
             ),
-          ),
+            Padding(
+              padding: EdgeInsets.only(
+                  top: MediaQuery.of(context).size.height * 0.013),
+              child: Text(
+                'GERENCIAR FAZENDA',
+                style: GoogleFonts.kanit(
+                    color: const Color(0xFF2DBCB6),
+                    fontSize: MediaQuery.of(context).size.width * 0.065),
+              ),
+            ),
+          ],
         ),
       ),
-      const SizedBox(height: 15),
+      SizedBox(height: MediaQuery.of(context).size.height * 0.02),
       Expanded(
         child: SingleChildScrollView(
           child: Column(
             children: [
-              QuizDesign(
+              FarmBoxDesign(
                   action: () {
                     changeScreen('edit-farm');
                   },
                   icon: 'assets/images/casinha.png',
                   text: 'EDITAR FAZENDA'),
               const SizedBox(height: 30),
-              QuizDesign(
-                  action: () {},
+              FarmBoxDesign(
+                  action: () {
+                    changeScreen('report-page');
+                  },
                   icon: 'assets/images/paper.png',
                   text: 'RELATORIOS'),
               const SizedBox(height: 30),
-              QuizDesign(
+              FarmBoxDesign(
                   action: () {
                     changeScreen('register-animal');
                   },
                   icon: 'assets/images/cow.png',
                   text: 'CADASTRAR ANIMAL'),
               const SizedBox(height: 30),
-              QuizDesign(
+              FarmBoxDesign(
                   action: () {
                     changeScreen('register-trough');
                   },
                   icon: 'assets/images/cow_eating.png',
                   text: 'CADASTRAR COCHO'),
               const SizedBox(height: 30),
-              QuizDesign(
+              FarmBoxDesign(
                   action: () {},
                   icon: 'assets/images/tractor.png',
                   text: 'VINCULAR EQUIPAMENTO'),
               const SizedBox(height: 30),
-              QuizDesign(
+              FarmBoxDesign(
                   action: () {
                     changeScreen('picket-page');
                   },

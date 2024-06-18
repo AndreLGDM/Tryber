@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:tryber/models/quiz_design.dart';
+import 'package:tryber/models/farm_box_design.dart';
 import 'package:tryber/data/list_manipulate.dart';
 import 'package:tryber/models/picket_info.dart';
 
@@ -46,7 +46,7 @@ class PicketPage extends StatelessWidget {
                       for (final PicketInfo in pickets)
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                          child: QuizDesign(
+                          child: FarmBoxDesign(
                             action: () {},
                             icon: 'assets/images/piquete.png',
                             text: PicketInfo.nome,

@@ -5,7 +5,7 @@ import 'package:tryber/models/input_password.dart';
 import 'package:tryber/Services/json_service.dart';
 import 'package:tryber/models/text_button_design.dart';
 import 'package:tryber/models/user_info.dart';
-import 'package:tryber/data/global_user.dart';
+import 'package:tryber/data/global_var.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage(this.login, this.cadastrar, this.recuperar, {super.key});

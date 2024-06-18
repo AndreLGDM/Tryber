@@ -3,10 +3,14 @@ import 'package:google_fonts/google_fonts.dart';
 
 class CustomDropdownWidget extends StatefulWidget {
   const CustomDropdownWidget(
-      {super.key, required this.list, required this.onChanged});
+      {super.key,
+      required this.text,
+      required this.list,
+      required this.onChanged});
 
   final List<String> list;
   final Function(String) onChanged;
+  final String text;
 
   @override
   State<StatefulWidget> createState() {
@@ -57,7 +61,7 @@ class _CustomDropdownWidgetState extends State<CustomDropdownWidget> {
       width: MediaQuery.of(context).size.width * 0.8,
       child: DropdownButtonFormField(
         decoration: InputDecoration(
-          labelText: 'TIPO',
+          labelText: widget.text,
           labelStyle: GoogleFonts.kanit(
               color: const Color(0xFF4C5C65),
               fontSize: MediaQuery.of(context).size.height * 0.018),

@@ -68,6 +68,7 @@ class RegisterPicket extends StatelessWidget {
               text: 'DESCRIÇÃO DO PIQUETE', controller: descricaoController),
           SizedBox(height: MediaQuery.of(context).size.height * 0.05),
           CustomDropdownWidget(
+            text: 'TIPO',
             list: const ['Gado de Corte', 'Gado de Leite'],
             onChanged: (newValue) {
               selectedType = newValue;

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:tryber/models/farm_info.dart';
 import 'package:tryber/Services/json_service.dart';
-import 'package:tryber/models/quiz_design.dart';
-import 'package:tryber/data/global_user.dart';
-import 'package:tryber/models/user_info.dart';
+import 'package:tryber/models/farm_box_design.dart';
+import 'package:tryber/data/global_var.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class FarmPage extends StatefulWidget {
   const FarmPage(this.novoCadastro, this.abrirFazenda, {super.key});
@@ -48,30 +48,47 @@ class _FarmPageState extends State<FarmPage> {
             Container(
               height: constraints.maxHeight * 0.1,
               alignment: Alignment.topLeft,
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(8, 8, 5, 0),
-                child: Transform.scale(
-                  scale: 1,
-                  child: const Icon(
-                    Icons.account_circle,
-                    size: 70,
-                    color: Color(0xFF4C5C65),
+              child: Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(
+                        MediaQuery.of(context).size.width * 0.02,
+                        MediaQuery.of(context).size.height * 0.015,
+                        MediaQuery.of(context).size.height * 0.015,
+                        0),
+                    child: Transform.scale(
+                      scale: MediaQuery.of(context).size.height * 0.0012,
+                      child: const Icon(
+                        Icons.account_circle,
+                        size: 70,
+                        color: Color(0xFF4C5C65),
+                      ),
+                    ),
                   ),
-                ),
+                  Padding(
+                    padding: EdgeInsets.only(
+                        top: MediaQuery.of(context).size.height * 0.013),
+                    child: Text(
+                      'FAZENDAS',
+                      style: GoogleFonts.kanit(
+                          color: const Color(0xFF2DBCB6),
+                          fontSize: MediaQuery.of(context).size.width * 0.065),
+                    ),
+                  ),
+                ],
               ),
             ),
             SizedBox(height: constraints.maxHeight * 0.03),
             Expanded(
               child: SizedBox(
-                height: MediaQuery.of(context).size.height *
-                    0.8, // Defina a altura desejada aqui
+                height: MediaQuery.of(context).size.height * 0.8,
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
                       for (final farmInfo in farms)
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                          child: QuizDesign(
+                          child: FarmBoxDesign(
                             action: widget.abrirFazenda,
                             icon: 'assets/images/casinha.png',
                             text: farmInfo.nome,
