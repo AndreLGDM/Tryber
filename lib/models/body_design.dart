@@ -97,7 +97,8 @@ class _BodyDesignState extends State<BodyDesign> {
       'register-picket': RegisterPicket(back: changeScreenWithParam),
       'picket-page':
           PicketPage(back: changeScreenWithParam, navegarCadastrarPicket),
-      'report-page': ReportPage(back: changeScreenWithParam)
+      'report-page': ReportPage(back: changeScreenWithParam),
+      'farm-report': FarmReport(back: changeScreenWithParam),
     };
 
     Widget screenWidget = screenWidgets[activeScreen] ??

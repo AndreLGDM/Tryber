@@ -6,10 +6,10 @@ import 'package:tryber/models/custom_dropdown.dart';
 import 'package:tryber/models/input_design.dart';
 
 class RegisterAnimal extends StatefulWidget {
-  RegisterAnimal(this.cadastrado, {super.key, required this.back});
+  const RegisterAnimal(this.cadastrado, {super.key, required this.back});
 
-  void Function() cadastrado;
-  void Function(String) back;
+  final void Function() cadastrado;
+  final void Function(String) back;
 
   @override
   State<RegisterAnimal> createState() {
@@ -73,8 +73,11 @@ class _RegisterAnimalState extends State<RegisterAnimal> {
     final String idBrinco = idBrincoController.text;
     final String peso = pesoController.text;
 
-    if (tipo.isNotEmpty && idBrinco.isNotEmpty && peso.isNotEmpty) {
-      addAnimal(tipo, idBrinco, peso);
+    if (tipo.isNotEmpty &&
+        idBrinco.isNotEmpty &&
+        peso.isNotEmpty &&
+        subTipo.isNotEmpty) {
+      addAnimal(tipo, idBrinco, peso, subTipo);
 
       widget.cadastrado();
       idBrincoController.clear();

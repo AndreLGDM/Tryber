@@ -26,8 +26,8 @@ List<UserInfo> getAllUsers() {
 
 List<AnimalInfo> animals = [];
 
-void addAnimal(String tipo, String idBrinco, String peso) {
-  animals.add(AnimalInfo(tipo, idBrinco, peso));
+void addAnimal(String tipo, String subtipo, String idBrinco, String peso) {
+  animals.add(AnimalInfo(tipo, subtipo, idBrinco, peso));
 }
 
 List<PicketInfo> pickets = [PicketInfo('nome', 'tamanho', 'descricao', 'tipo')];

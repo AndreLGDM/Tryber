@@ -1,13 +1,15 @@
 class AnimalInfo {
-  AnimalInfo(this.tipo, this.idBrinco, this.peso);
+  AnimalInfo(this.tipo, this.subtipo, this.idBrinco, this.peso);
 
   final String tipo;
+  final String subtipo;
   final String idBrinco;
   final String peso;
 
   Map<String, dynamic> toJson() {
     return {
       'tipo': tipo,
+      'subtipo': subtipo,
       'idBrinco': idBrinco,
       'peso': peso,
     };
@@ -15,6 +17,6 @@ class AnimalInfo {
 
   @override
   String toString() {
-    return 'AnimalInfo { tipo: $tipo, idBrinco: $idBrinco, peso: $peso }';
+    return 'AnimalInfo { tipo: $tipo, subtipo: $subtipo, idBrinco: $idBrinco, peso: $peso }';
   }
 }

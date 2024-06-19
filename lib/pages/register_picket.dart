@@ -7,16 +7,16 @@ import 'package:tryber/models/input_design.dart';
 import 'package:tryber/models/picket_info.dart';
 
 class RegisterPicket extends StatelessWidget {
-  RegisterPicket({super.key, required this.back});
+  const RegisterPicket({super.key, required this.back});
 
   final void Function(String) back;
-  String? selectedType;
 
   @override
   Widget build(BuildContext context) {
     final TextEditingController nomeController = TextEditingController();
     final TextEditingController descricaoController = TextEditingController();
     final TextEditingController tamanhoController = TextEditingController();
+    String? selectedType;
 
     void cadastrarPiquete() {
       final String tipo = selectedType ?? '';

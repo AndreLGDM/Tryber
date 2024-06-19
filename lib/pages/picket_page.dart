@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tryber/models/farm_box_design.dart';
 import 'package:tryber/data/list_manipulate.dart';
-import 'package:tryber/models/picket_info.dart';
 
 class PicketPage extends StatelessWidget {
   const PicketPage(this.novoCadastro, {super.key, required this.back});
