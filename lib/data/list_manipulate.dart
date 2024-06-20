@@ -5,8 +5,9 @@ import 'package:tryber/models/picket_info.dart';
 
 List<FarmInfo> farms = [];
 
-void addFarm(String nome, String descricao, String localizacao) {
-  farms.add(FarmInfo(nome, descricao, localizacao));
+void addFarm(String nome, String descricao, String localizacao,
+    List<PicketInfo> pickets) {
+  farms.add(FarmInfo(nome, descricao, localizacao, pickets));
 }
 
 List<FarmInfo> getAllFarms() {
@@ -30,8 +31,9 @@ void addAnimal(String tipo, String subtipo, String idBrinco, String peso) {
   animals.add(AnimalInfo(tipo, subtipo, idBrinco, peso));
 }
 
-List<PicketInfo> pickets = [PicketInfo('nome', 'tamanho', 'descricao', 'tipo')];
+List<PicketInfo> pickets = [];
 
-void addPicket(String nome, String tamanho, String descricao, String tipo) {
-  pickets.add(PicketInfo(nome, tamanho, descricao, tipo));
+void addPicket(String nome, String tamanho, String descricao, String tipo,
+    List<AnimalInfo> animals) {
+  pickets.add(PicketInfo(nome, tamanho, descricao, tipo, animals));
 }

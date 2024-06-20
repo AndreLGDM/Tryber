@@ -15,6 +15,15 @@ class AnimalInfo {
     };
   }
 
+  factory AnimalInfo.fromJson(Map<String, dynamic> json) {
+    return AnimalInfo(
+      json['tipo'],
+      json['subtipo'],
+      json['idBrinco'],
+      json['peso'],
+    );
+  }
+
   @override
   String toString() {
     return 'AnimalInfo { tipo: $tipo, subtipo: $subtipo, idBrinco: $idBrinco, peso: $peso }';

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tryber/Services/json_service.dart';
+import 'package:tryber/data/global_var.dart';
 import 'package:tryber/data/list_manipulate.dart';
+import 'package:tryber/models/animal_info.dart';
 import 'package:tryber/models/button_design.dart';
 import 'package:tryber/models/custom_dropdown.dart';
 import 'package:tryber/models/input_design.dart';
@@ -22,8 +25,28 @@ class _RegisterAnimalState extends State<RegisterAnimal> {
   String? selectedSubtype;
   final TextEditingController idBrincoController = TextEditingController();
   final TextEditingController pesoController = TextEditingController();
+  List animals = picketAcessado?.animals ?? [];
+  late GenericService animalsInfoService;
   List<String> subtypesList = [];
   Key dropdownKey = UniqueKey();
+
+  @override
+  void initState() {
+    super.initState();
+    animalsInfoService = GenericService<AnimalInfo>(
+      fromJson: AnimalInfo.fromJson,
+      toJson: (animalInfo) => animalInfo.toJson(),
+    );
+    loadAnimals();
+  }
+
+  Future<void> loadAnimals() async {
+    List loadedAnimals = await animalsInfoService
+        .loadList('${picketAcessado?.nome}_${picketAcessado?.tipo}.json');
+    setState(() {
+      animals = loadedAnimals;
+    });
+  }
 
   void _updateSubtypesList(String type) {
     List<String> newSubtypesList;
@@ -77,7 +100,15 @@ class _RegisterAnimalState extends State<RegisterAnimal> {
         idBrinco.isNotEmpty &&
         peso.isNotEmpty &&
         subTipo.isNotEmpty) {
-      addAnimal(tipo, idBrinco, peso, subTipo);
+      List<AnimalInfo> animais = List.from(animals);
+      setState(() {
+        animais.add(AnimalInfo(tipo, subTipo, idBrinco, peso));
+        GenericService<AnimalInfo>(
+                toJson: (farmInfo) => farmInfo.toJson(),
+                fromJson: AnimalInfo.fromJson)
+            .saveList(animais,
+                '${picketAcessado?.nome}_${picketAcessado?.tipo}.json');
+      });
 
       widget.cadastrado('manage-picket');
       idBrincoController.clear();

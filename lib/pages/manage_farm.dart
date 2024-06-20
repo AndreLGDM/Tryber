@@ -26,7 +26,7 @@ class ManageFarm extends StatelessWidget {
                 child: Icon(
                   Icons.account_circle,
                   size: MediaQuery.of(context).size.height * 0.055,
-                  color: Color(0xFF4C5C65),
+                  color: const Color(0xFF4C5C65),
                 ),
               ),
             ),

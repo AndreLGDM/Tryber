@@ -97,6 +97,9 @@ class _FarmPageState extends State<FarmPage> {
                           padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
                           child: FarmBoxDesign(
                             action: () {
+                              setState(() {
+                                fazendaAcessada = farmInfo;
+                              });
                               widget.abrirFazenda('manage-farm');
                             },
                             icon: 'assets/images/casinha.png',

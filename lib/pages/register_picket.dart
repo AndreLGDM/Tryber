@@ -1,23 +1,51 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:tryber/data/list_manipulate.dart';
 import 'package:tryber/models/button_design.dart';
 import 'package:tryber/models/custom_dropdown.dart';
 import 'package:tryber/models/input_design.dart';
 import 'package:tryber/models/picket_info.dart';
+import 'package:tryber/Services/json_service.dart';
+import 'package:tryber/data/global_var.dart';
 
-class RegisterPicket extends StatelessWidget {
+class RegisterPicket extends StatefulWidget {
   const RegisterPicket({super.key, required this.back});
 
   final void Function(String) back;
 
   @override
-  Widget build(BuildContext context) {
-    final TextEditingController nomeController = TextEditingController();
-    final TextEditingController descricaoController = TextEditingController();
-    final TextEditingController tamanhoController = TextEditingController();
-    String? selectedType;
+  State<RegisterPicket> createState() {
+    return _RegisterPicketState();
+  }
+}
 
+class _RegisterPicketState extends State<RegisterPicket> {
+  final TextEditingController nomeController = TextEditingController();
+  final TextEditingController descricaoController = TextEditingController();
+  final TextEditingController tamanhoController = TextEditingController();
+  String? selectedType;
+  List pickets = fazendaAcessada?.pickets ?? [];
+  late GenericService picketInfoService;
+
+  @override
+  void initState() {
+    super.initState();
+    picketInfoService = GenericService<PicketInfo>(
+      fromJson: PicketInfo.fromJson,
+      toJson: (picketInfo) => picketInfo.toJson(),
+    );
+    loadPickets();
+  }
+
+  Future<void> loadPickets() async {
+    List loadedFarms =
+        await picketInfoService.loadList('${fazendaAcessada?.nome}.json');
+    setState(() {
+      pickets = loadedFarms;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     void cadastrarPiquete() {
       final String tipo = selectedType ?? '';
       final String nome = nomeController.text;
@@ -28,8 +56,16 @@ class RegisterPicket extends StatelessWidget {
           descricao.isNotEmpty &&
           tamanho.isNotEmpty &&
           tipo.isNotEmpty) {
-        pickets.add(PicketInfo(nome, tamanho, descricao, tipo));
-        back('picket-page');
+        List<PicketInfo> piquetes = List.from(pickets);
+        setState(() {
+          piquetes.add(PicketInfo(nome, tamanho, descricao, tipo, []));
+          GenericService<PicketInfo>(
+                  toJson: (picketInfo) => picketInfo.toJson(),
+                  fromJson: PicketInfo.fromJson)
+              .saveList(piquetes, '${fazendaAcessada?.nome}.json');
+          widget.back('picket-page');
+        });
+
         nomeController.clear();
         descricaoController.clear();
         tamanhoController.clear();
@@ -44,7 +80,7 @@ class RegisterPicket extends StatelessWidget {
             alignment: Alignment.centerLeft,
             child: IconButton(
                 onPressed: () {
-                  back('picket-page');
+                  widget.back('picket-page');
                 },
                 icon: const Icon(
                   Icons.arrow_back_rounded,

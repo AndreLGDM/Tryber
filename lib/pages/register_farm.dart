@@ -43,6 +43,17 @@ class _RegisterFarmState extends State<RegisterFarm> {
     });
   }
 
+  bool isFarmRegistered(String email) {
+    String nome = nomeController.text;
+    for (var farm in farms) {
+      if (farm.nome == nome) {
+        return true;
+      }
+      break;
+    }
+    return false;
+  }
+
   @override
   Widget build(BuildContext context) {
     @override
@@ -52,9 +63,19 @@ class _RegisterFarmState extends State<RegisterFarm> {
       final String localizacao = localizacaoController.text;
 
       if (nome.isNotEmpty && descricao.isNotEmpty && localizacao.isNotEmpty) {
+        if (isFarmRegistered(nome)) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content:
+                  Text('Fazenda já cadastrada. Por favor, use outro nome.'),
+              duration: Duration(seconds: 2),
+            ),
+          );
+          return;
+        }
         List<FarmInfo> fazendas = List.from(farms);
         setState(() {
-          fazendas.add(FarmInfo(nome, descricao, localizacao));
+          fazendas.add(FarmInfo(nome, descricao, localizacao, []));
 
           GenericService<FarmInfo>(
                   toJson: (farmInfo) => farmInfo.toJson(),

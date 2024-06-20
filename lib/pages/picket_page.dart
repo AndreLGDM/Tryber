@@ -1,15 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tryber/Services/json_service.dart';
+import 'package:tryber/data/global_var.dart';
 import 'package:tryber/models/farm_box_design.dart';
-import 'package:tryber/data/list_manipulate.dart';
+import 'package:tryber/models/picket_info.dart';
 
-class PicketPage extends StatelessWidget {
+class PicketPage extends StatefulWidget {
   const PicketPage(this.changeScreen,
       {super.key, required this.novoCadastro, required this.back});
 
   final void Function(String) novoCadastro;
   final void Function(String) back;
   final void Function(String) changeScreen;
+
+  @override
+  State<PicketPage> createState() {
+    return _PicketPageState();
+  }
+}
+
+class _PicketPageState extends State<PicketPage> {
+  late GenericService picketInfoService;
+  List pickets = fazendaAcessada?.pickets ?? [];
+
+  @override
+  void initState() {
+    super.initState();
+    picketInfoService = GenericService<PicketInfo>(
+      fromJson: PicketInfo.fromJson,
+      toJson: (picketInfo) => picketInfo.toJson(),
+    );
+    loadPickets();
+  }
+
+  Future<void> loadPickets() async {
+    List loadedpickets =
+        await picketInfoService.loadList('${fazendaAcessada?.nome}.json');
+    setState(() {
+      pickets = loadedpickets;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +52,7 @@ class PicketPage extends StatelessWidget {
               alignment: Alignment.centerLeft,
               child: IconButton(
                   onPressed: () {
-                    back('manage-farm');
+                    widget.back('manage-farm');
                   },
                   icon: const Icon(
                     Icons.arrow_back_rounded,
@@ -44,12 +74,16 @@ class PicketPage extends StatelessWidget {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
+                      // ignore: non_constant_identifier_names
                       for (final PicketInfo in pickets)
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
                           child: FarmBoxDesign(
                             action: () {
-                              changeScreen('manage-picket');
+                              setState(() {
+                                picketAcessado = PicketInfo;
+                              });
+                              widget.changeScreen('manage-picket');
                             },
                             icon: 'assets/images/piquete.png',
                             text: PicketInfo.nome,
@@ -68,7 +102,7 @@ class PicketPage extends StatelessWidget {
               ),
               child: IconButton(
                 onPressed: () {
-                  novoCadastro('register-picket');
+                  widget.novoCadastro('register-picket');
                 },
                 icon: Icon(
                   Icons.add_circle_outline,

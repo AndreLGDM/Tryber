@@ -69,7 +69,9 @@ class ManagePicket extends StatelessWidget {
                   text: 'CADASTRAR COCHO'),
               const SizedBox(height: 30),
               FarmBoxDesign(
-                  action: () {},
+                  action: () {
+                    changeScreen('teste-api');
+                  },
                   icon: 'assets/images/link.png',
                   text: 'VINCULAR ANIMAL'),
             ],

@@ -15,6 +15,7 @@ import 'package:tryber/pages/register_picket.dart';
 import 'package:tryber/pages/register_trough.dart';
 import 'package:tryber/pages/register_user.dart';
 import 'package:tryber/pages/report_page.dart';
+import 'package:tryber/pages/teste_api.dart';
 
 class BodyDesign extends StatefulWidget {
   const BodyDesign({super.key});
@@ -61,6 +62,7 @@ class _BodyDesignState extends State<BodyDesign> {
       'manage-picket': ManagePicket(
           back: changeScreenWithParam, changeScreen: changeScreenWithParam),
       'config-page': const ConfigPage(),
+      'teste-api': TesteApi(changeScreenWithParam),
     };
 
     Widget screenWidget = screenWidgets[activeScreen] ??
