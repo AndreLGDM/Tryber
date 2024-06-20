@@ -18,7 +18,7 @@ class RegisterTrough extends StatelessWidget {
             alignment: Alignment.centerLeft,
             child: IconButton(
                 onPressed: () {
-                  back('principal-page');
+                  back('manage-picket');
                 },
                 icon: const Icon(
                   Icons.arrow_back_rounded,

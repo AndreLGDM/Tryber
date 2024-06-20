@@ -54,7 +54,7 @@ class RegisterPicket extends StatelessWidget {
           ),
           SizedBox(height: MediaQuery.of(context).size.height * 0.01),
           Text(
-            'ADCIONAR PIQUETE',
+            'ADICIONAR PIQUETE',
             style: GoogleFonts.kanit(
                 color: const Color(0xFF2DBCB6),
                 fontSize: MediaQuery.of(context).size.width * 0.083),

@@ -8,7 +8,7 @@ import 'package:tryber/models/input_design.dart';
 class RegisterAnimal extends StatefulWidget {
   const RegisterAnimal(this.cadastrado, {super.key, required this.back});
 
-  final void Function() cadastrado;
+  final void Function(String) cadastrado;
   final void Function(String) back;
 
   @override
@@ -79,7 +79,7 @@ class _RegisterAnimalState extends State<RegisterAnimal> {
         subTipo.isNotEmpty) {
       addAnimal(tipo, idBrinco, peso, subTipo);
 
-      widget.cadastrado();
+      widget.cadastrado('manage-picket');
       idBrincoController.clear();
       pesoController.clear();
     }
@@ -95,7 +95,7 @@ class _RegisterAnimalState extends State<RegisterAnimal> {
             alignment: Alignment.centerLeft,
             child: IconButton(
                 onPressed: () {
-                  widget.back('principal-page');
+                  widget.back('manage-picket');
                 },
                 icon: const Icon(
                   Icons.arrow_back_rounded,

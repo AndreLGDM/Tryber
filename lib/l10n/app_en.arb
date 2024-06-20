@@ -1,0 +1,8 @@
+{
+    "email": "EMAIL",
+    "senha": "PASSWORD",
+    "login": "LOGIN",
+    "cadastrar": "REGISTER",
+    "esqueceuSenha": "Forgot Password?",
+    "logarGoogle": "Login with Google"
+}

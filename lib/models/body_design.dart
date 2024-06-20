@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'dart:ui';
+import 'package:tryber/pages/config_page.dart';
 import 'package:tryber/pages/edit_farm.dart';
 import 'package:tryber/pages/farm_page.dart';
 import 'package:tryber/pages/farm_report.dart';
 import 'package:tryber/pages/login_page.dart';
+import 'package:tryber/pages/manage_picket.dart';
 import 'package:tryber/pages/picket_page.dart';
-import 'package:tryber/pages/principal_page.dart';
+import 'package:tryber/pages/manage_farm.dart';
 import 'package:tryber/pages/recovey_page.dart';
 import 'package:tryber/pages/register_animal.dart';
 import 'package:tryber/pages/register_farm.dart';
@@ -25,84 +28,45 @@ class BodyDesign extends StatefulWidget {
 class _BodyDesignState extends State<BodyDesign> {
   var activeScreen = 'login-screen';
 
-  void login() {
-    setState(() {
-      activeScreen = 'farm-page';
-    });
-  }
-
-  void clienteCadastrado() {
-    setState(() {
-      activeScreen = 'login-screen';
-    });
-  }
-
-  void cadastrarCliente() {
-    setState(() {
-      activeScreen = 'register-user';
-    });
-  }
-
-  void navegarCadastrarFazenda() {
-    setState(() {
-      activeScreen = 'register-farm';
-    });
-  }
-
-  void navegarCadastrarPicket() {
-    setState(() {
-      activeScreen = 'register-picket';
-    });
-  }
-
-  void clicarFazenda() {
-    setState(() {
-      activeScreen = 'principal-page';
-    });
-  }
-
-  void recuperacaoSenha() {
-    setState(() {
-      activeScreen = 'recovery-page';
-    });
-  }
-
   void changeScreenWithParam(String text) {
     setState(() {
       activeScreen = text;
     });
   }
 
-  void cadastrarFazenda() {
-    setState(() {
-      activeScreen = 'farm-page';
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     final screenWidgets = {
-      'login-screen': LoginPage(login, cadastrarCliente, recuperacaoSenha),
+      'login-screen': LoginPage(
+          changeScreenWithParam, changeScreenWithParam, changeScreenWithParam,
+          selectedLocal: PlatformDispatcher.instance.locale),
       'register-user':
-          RegisterUser(clienteCadastrado, back: changeScreenWithParam),
+          RegisterUser(changeScreenWithParam, back: changeScreenWithParam),
       'recovery-page': RecoveyPage(back: changeScreenWithParam),
-      'farm-page': FarmPage(navegarCadastrarFazenda, clicarFazenda),
+      'farm-page': FarmPage(changeScreenWithParam,
+          changeScreen: changeScreenWithParam,
+          abrirFazenda: changeScreenWithParam),
       'register-farm':
-          RegisterFarm(cadastrarFazenda, back: changeScreenWithParam),
-      'principal-page': PrincipalPage(changeScreen: changeScreenWithParam),
+          RegisterFarm(changeScreenWithParam, back: changeScreenWithParam),
+      'manage-farm': ManageFarm(changeScreen: changeScreenWithParam),
       'edit-farm': EditFarm(back: changeScreenWithParam),
       'register-animal':
-          RegisterAnimal(clicarFazenda, back: changeScreenWithParam),
+          RegisterAnimal(changeScreenWithParam, back: changeScreenWithParam),
       'register-trough': RegisterTrough(back: changeScreenWithParam),
       'register-picket': RegisterPicket(back: changeScreenWithParam),
-      'picket-page':
-          PicketPage(back: changeScreenWithParam, navegarCadastrarPicket),
+      'picket-page': PicketPage(changeScreenWithParam,
+          back: changeScreenWithParam, novoCadastro: changeScreenWithParam),
       'report-page': ReportPage(back: changeScreenWithParam),
       'farm-report': FarmReport(back: changeScreenWithParam),
+      'manage-picket': ManagePicket(
+          back: changeScreenWithParam, changeScreen: changeScreenWithParam),
+      'config-page': const ConfigPage(),
     };
 
     Widget screenWidget = screenWidgets[activeScreen] ??
-        LoginPage(login, cadastrarCliente, recuperacaoSenha);
+        LoginPage(
+            changeScreenWithParam, changeScreenWithParam, changeScreenWithParam,
+            selectedLocal: PlatformDispatcher.instance.locale);
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,

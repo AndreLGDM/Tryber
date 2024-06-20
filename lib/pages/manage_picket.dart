@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:tryber/models/farm_box_design.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class PrincipalPage extends StatelessWidget {
-  const PrincipalPage({super.key, required this.changeScreen});
+class ManagePicket extends StatelessWidget {
+  const ManagePicket(
+      {super.key, required this.back, required this.changeScreen});
 
   final void Function(String) changeScreen;
+  final void Function(String) back;
 
   @override
   Widget build(BuildContext context) {
@@ -23,18 +25,22 @@ class PrincipalPage extends StatelessWidget {
                   0),
               child: Transform.scale(
                 scale: MediaQuery.of(context).size.height * 0.001,
-                child: const Icon(
-                  Icons.account_circle,
-                  size: 70,
-                  color: Color(0xFF4C5C65),
-                ),
+                child: IconButton(
+                    onPressed: () {
+                      back('picket-page');
+                    },
+                    icon: const Icon(
+                      Icons.arrow_back_rounded,
+                      color: Colors.black,
+                      size: 30,
+                    )),
               ),
             ),
             Padding(
               padding: EdgeInsets.only(
                   top: MediaQuery.of(context).size.height * 0.013),
               child: Text(
-                'GERENCIAR FAZENDA',
+                'GERENCIAR PIQUETES',
                 style: GoogleFonts.kanit(
                     color: const Color(0xFF2DBCB6),
                     fontSize: MediaQuery.of(context).size.width * 0.065),
@@ -48,20 +54,6 @@ class PrincipalPage extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              FarmBoxDesign(
-                  action: () {
-                    changeScreen('edit-farm');
-                  },
-                  icon: 'assets/images/casinha.png',
-                  text: 'EDITAR FAZENDA'),
-              const SizedBox(height: 30),
-              FarmBoxDesign(
-                  action: () {
-                    changeScreen('report-page');
-                  },
-                  icon: 'assets/images/paper.png',
-                  text: 'RELATORIOS'),
-              const SizedBox(height: 30),
               FarmBoxDesign(
                   action: () {
                     changeScreen('register-animal');
@@ -78,15 +70,8 @@ class PrincipalPage extends StatelessWidget {
               const SizedBox(height: 30),
               FarmBoxDesign(
                   action: () {},
-                  icon: 'assets/images/tractor.png',
-                  text: 'VINCULAR EQUIPAMENTO'),
-              const SizedBox(height: 30),
-              FarmBoxDesign(
-                  action: () {
-                    changeScreen('picket-page');
-                  },
-                  icon: 'assets/images/piquete.png',
-                  text: 'PIQUETE'),
+                  icon: 'assets/images/link.png',
+                  text: 'VINCULAR ANIMAL'),
             ],
           ),
         ),

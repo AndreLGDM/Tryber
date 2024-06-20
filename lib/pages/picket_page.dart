@@ -4,10 +4,12 @@ import 'package:tryber/models/farm_box_design.dart';
 import 'package:tryber/data/list_manipulate.dart';
 
 class PicketPage extends StatelessWidget {
-  const PicketPage(this.novoCadastro, {super.key, required this.back});
+  const PicketPage(this.changeScreen,
+      {super.key, required this.novoCadastro, required this.back});
 
-  final void Function() novoCadastro;
+  final void Function(String) novoCadastro;
   final void Function(String) back;
+  final void Function(String) changeScreen;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class PicketPage extends StatelessWidget {
               alignment: Alignment.centerLeft,
               child: IconButton(
                   onPressed: () {
-                    back('principal-page');
+                    back('manage-farm');
                   },
                   icon: const Icon(
                     Icons.arrow_back_rounded,
@@ -46,7 +48,9 @@ class PicketPage extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
                           child: FarmBoxDesign(
-                            action: () {},
+                            action: () {
+                              changeScreen('manage-picket');
+                            },
                             icon: 'assets/images/piquete.png',
                             text: PicketInfo.nome,
                           ),
@@ -63,7 +67,9 @@ class PicketPage extends StatelessWidget {
                     constraints.maxHeight * 0.02, // 10% da altura disponível
               ),
               child: IconButton(
-                onPressed: novoCadastro,
+                onPressed: () {
+                  novoCadastro('register-picket');
+                },
                 icon: Icon(
                   Icons.add_circle_outline,
                   size: MediaQuery.of(context).size.height * 0.09,

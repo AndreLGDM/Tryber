@@ -10,7 +10,7 @@ import 'package:tryber/data/global_var.dart';
 class RegisterUser extends StatefulWidget {
   const RegisterUser(this.cadastrado, {super.key, required this.back});
 
-  final void Function() cadastrado;
+  final void Function(String) cadastrado;
   final void Function(String) back;
 
   @override
@@ -250,7 +250,7 @@ class _RegisterUserState extends State<RegisterUser> {
               fromJson: UserInfo.fromJson)
           .saveList(usuarios, 'user.json');
 
-      widget.cadastrado();
+      widget.cadastrado('login-page');
 
       // Limpa os campos após o cadastro
       nomeController.clear();

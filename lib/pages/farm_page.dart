@@ -6,10 +6,12 @@ import 'package:tryber/data/global_var.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class FarmPage extends StatefulWidget {
-  const FarmPage(this.novoCadastro, this.abrirFazenda, {super.key});
+  const FarmPage(this.novoCadastro,
+      {super.key, required this.changeScreen, required this.abrirFazenda});
 
-  final void Function() novoCadastro;
-  final void Function() abrirFazenda;
+  final void Function(String) novoCadastro;
+  final void Function(String) abrirFazenda;
+  final void Function(String) changeScreen;
 
   @override
   State<StatefulWidget> createState() {
@@ -58,10 +60,15 @@ class _FarmPageState extends State<FarmPage> {
                         0),
                     child: Transform.scale(
                       scale: MediaQuery.of(context).size.height * 0.0012,
-                      child: const Icon(
-                        Icons.account_circle,
-                        size: 70,
-                        color: Color(0xFF4C5C65),
+                      child: IconButton(
+                        onPressed: () {
+                          widget.changeScreen('config-page');
+                        },
+                        icon: Icon(
+                          Icons.account_circle,
+                          size: MediaQuery.of(context).size.height * 0.055,
+                        ),
+                        color: const Color(0xFF4C5C65),
                       ),
                     ),
                   ),
@@ -89,7 +96,9 @@ class _FarmPageState extends State<FarmPage> {
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
                           child: FarmBoxDesign(
-                            action: widget.abrirFazenda,
+                            action: () {
+                              widget.abrirFazenda('manage-farm');
+                            },
                             icon: 'assets/images/casinha.png',
                             text: farmInfo.nome,
                           ),
@@ -106,7 +115,9 @@ class _FarmPageState extends State<FarmPage> {
                     constraints.maxHeight * 0.02, // 10% da altura disponível
               ),
               child: IconButton(
-                onPressed: widget.novoCadastro,
+                onPressed: () {
+                  widget.novoCadastro('register-farm');
+                },
                 icon: Icon(
                   Icons.add_circle_outline,
                   size: MediaQuery.of(context).size.height * 0.09,

@@ -6,13 +6,16 @@ import 'package:tryber/Services/json_service.dart';
 import 'package:tryber/models/text_button_design.dart';
 import 'package:tryber/models/user_info.dart';
 import 'package:tryber/data/global_var.dart';
+import 'package:tryber/extensions/context_extension.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage(this.login, this.cadastrar, this.recuperar, {super.key});
+  const LoginPage(this.login, this.cadastrar, this.recuperar,
+      {super.key, required this.selectedLocal});
 
-  final void Function() login;
-  final void Function() cadastrar;
-  final void Function() recuperar;
+  final Locale selectedLocal;
+  final void Function(String) login;
+  final void Function(String) cadastrar;
+  final void Function(String) recuperar;
 
   @override
   State<LoginPage> createState() {
@@ -64,7 +67,7 @@ class _LoginPageState extends State<LoginPage> {
             setState(() {
               usuarioLogado = cliente;
             });
-            widget.login();
+            widget.login('farm-page');
           } else {
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
@@ -102,16 +105,25 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
             SizedBox(height: screenSize.height * 0.1),
-            InputDesign(text: 'EMAIL', controller: emailController),
+            InputDesign(
+                text: context.localizations.email, controller: emailController),
             SizedBox(height: screenSize.height * 0.05),
-            InputPassword('SENHA', controller: senhaController),
+            InputPassword(context.localizations.senha,
+                controller: senhaController),
             SizedBox(height: screenSize.height * 0.06),
-            ButtonDesign(text: 'LOGIN', action: verificarLogin),
+            ButtonDesign(
+                text: context.localizations.login, action: verificarLogin),
             SizedBox(height: screenSize.height * 0.02),
-            TextButtonDesign(widget.recuperar, 'esqueceu_senha_login',
-                text: 'Esqueceu a Senha ?'),
+            TextButtonDesign(() {
+              widget.recuperar('recovery-page');
+            }, 'esqueceu_senha_login',
+                text: context.localizations.esqueceuSenha),
             SizedBox(height: screenSize.height * 0.02),
-            ButtonDesign(text: 'CADASTRAR', action: widget.cadastrar),
+            ButtonDesign(
+                text: context.localizations.cadastrar,
+                action: () {
+                  widget.cadastrar('register-user');
+                }),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -126,7 +138,7 @@ class _LoginPageState extends State<LoginPage> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
                   child: TextButtonDesign(() {}, 'logar_google_login',
-                      text: 'Logar com o Google'),
+                      text: context.localizations.logarGoogle),
                 )
               ],
             )

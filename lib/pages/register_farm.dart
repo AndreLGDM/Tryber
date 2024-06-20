@@ -9,7 +9,7 @@ import 'package:tryber/models/input_design.dart';
 class RegisterFarm extends StatefulWidget {
   const RegisterFarm(this.changePage, {super.key, required this.back});
 
-  final void Function() changePage;
+  final void Function(String) changePage;
   final void Function(String) back;
 
   @override
@@ -61,7 +61,7 @@ class _RegisterFarmState extends State<RegisterFarm> {
                   fromJson: FarmInfo.fromJson)
               .saveList(
                   fazendas, '${usuarioLogado?.nome}_${usuarioLogado?.id}.json');
-          widget.changePage();
+          widget.changePage('farm-page');
         });
 
         nomeController.clear();

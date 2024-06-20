@@ -21,7 +21,7 @@ class EditFarm extends StatelessWidget {
             alignment: Alignment.centerLeft,
             child: IconButton(
                 onPressed: () {
-                  back('principal-page');
+                  back('manage-farm');
                 },
                 icon: const Icon(
                   Icons.arrow_back_rounded,
