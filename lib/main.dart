@@ -15,10 +15,24 @@ void main() {
       supportedLocales: const [
         Locale('en', 'US'),
         Locale('pt', 'BR'),
-        Locale('es', 'ES')
+        Locale('es', 'ES'),
+        Locale('fr', 'FR'),
+        Locale('ar', 'AE'),
+        Locale('bn', 'BD'),
+        Locale('de', 'DE'),
+        Locale('hi', 'IN'),
+        Locale('id', 'ID'),
+        Locale('it', 'IT'),
+        Locale('ja', 'JP'),
+        Locale('ko', 'KR'),
+        Locale('ms', 'MY'),
+        Locale('ru', 'RU'),
+        Locale('th', 'TH'),
+        Locale('tr', 'TR'),
+        Locale('vi', 'VN'),
+        Locale('zh', 'CN'),
       ],
-      locale: PlatformDispatcher
-          .instance.locale, // Acessa o idioma atual do dispositivo
+      locale: PlatformDispatcher.instance.locale,
       home: const Scaffold(
         resizeToAvoidBottomInset: true,
         body: BodyDesign(),
