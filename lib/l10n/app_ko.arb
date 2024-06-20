@@ -1,0 +1,8 @@
+{
+  "email": "이메일",
+  "senha": "비밀번호",
+  "login": "로그인",
+  "cadastrar": "가입하기",
+  "esqueceuSenha": "비밀번호를 잊으셨나요?",
+  "logarGoogle": "Google 계정으로 로그인"
+}

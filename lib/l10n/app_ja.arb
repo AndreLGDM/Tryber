@@ -1,0 +1,8 @@
+{
+  "email": "メールアドレス",
+  "senha": "パスワード",
+  "login": "ログイン",
+  "cadastrar": "登録",
+  "esqueceuSenha": "パスワードを忘れた場合",
+  "logarGoogle": "Googleアカウントでログイン"
+}

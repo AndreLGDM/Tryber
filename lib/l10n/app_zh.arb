@@ -1,0 +1,8 @@
+{
+  "email": "电子邮件",
+  "senha": "密码",
+  "login": "登录",
+  "cadastrar": "注册",
+  "esqueceuSenha": "忘记密码？",
+  "logarGoogle": "使用Google登录"
+}
