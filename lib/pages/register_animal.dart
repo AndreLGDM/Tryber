@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tryber/Services/json_service.dart';
 import 'package:tryber/data/global_var.dart';
-import 'package:tryber/data/list_manipulate.dart';
 import 'package:tryber/models/animal_info.dart';
 import 'package:tryber/models/button_design.dart';
 import 'package:tryber/models/custom_dropdown.dart';
