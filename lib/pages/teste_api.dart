@@ -49,8 +49,8 @@ class _TesteApiState extends State<TesteApi> {
     apiService = ApiService('http://$url:5001');
     String idBrinco = idBrincoController.text;
     String quantidade = novaQuantidadeController.text;
-    for (final Animal in animals) {
-      if (Animal.idBrinco == idBrinco) {
+    for (final animal in animals) {
+      if (animal.idBrinco == idBrinco) {
         apiService.updateRacao(idBrinco, int.parse(quantidade));
         widget.changePage('manage-picket');
       }

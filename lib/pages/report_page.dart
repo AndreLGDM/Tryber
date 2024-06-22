@@ -5,7 +5,7 @@ import 'package:tryber/models/report_box_design.dart';
 class ReportPage extends StatelessWidget {
   const ReportPage({super.key, required this.back});
 
-  final void Function(String) back;
+  final void Function() back;
   @override
   Widget build(BuildContext context) {
     return Column(children: [
@@ -13,9 +13,7 @@ class ReportPage extends StatelessWidget {
       Container(
         alignment: Alignment.centerLeft,
         child: IconButton(
-            onPressed: () {
-              back('manage-farm');
-            },
+            onPressed: back,
             icon: const Icon(
               Icons.arrow_back_rounded,
               color: Colors.black,

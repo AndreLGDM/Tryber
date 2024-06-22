@@ -11,7 +11,7 @@ class RegisterUser extends StatefulWidget {
   const RegisterUser(this.cadastrado, {super.key, required this.back});
 
   final void Function(String) cadastrado;
-  final void Function(String) back;
+  final void Function() back;
 
   @override
   State<RegisterUser> createState() {
@@ -269,7 +269,7 @@ class _RegisterUserState extends State<RegisterUser> {
             alignment: Alignment.centerLeft,
             child: IconButton(
                 onPressed: () {
-                  widget.back('login-screen');
+                  widget.back();
                 },
                 icon: const Icon(
                   Icons.arrow_back_rounded,

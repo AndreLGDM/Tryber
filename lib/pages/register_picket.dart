@@ -10,7 +10,7 @@ import 'package:tryber/data/global_var.dart';
 class RegisterPicket extends StatefulWidget {
   const RegisterPicket({super.key, required this.back});
 
-  final void Function(String) back;
+  final void Function() back;
 
   @override
   State<RegisterPicket> createState() {
@@ -63,7 +63,7 @@ class _RegisterPicketState extends State<RegisterPicket> {
                   toJson: (picketInfo) => picketInfo.toJson(),
                   fromJson: PicketInfo.fromJson)
               .saveList(piquetes, '${fazendaAcessada?.nome}.json');
-          widget.back('picket-page');
+          widget.back();
         });
 
         nomeController.clear();
@@ -80,7 +80,7 @@ class _RegisterPicketState extends State<RegisterPicket> {
             alignment: Alignment.centerLeft,
             child: IconButton(
                 onPressed: () {
-                  widget.back('picket-page');
+                  widget.back();
                 },
                 icon: const Icon(
                   Icons.arrow_back_rounded,

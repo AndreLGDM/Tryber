@@ -6,7 +6,7 @@ import 'package:tryber/models/input_design.dart';
 class EditFarm extends StatelessWidget {
   EditFarm({super.key, required this.back});
 
-  final void Function(String) back;
+  final void Function() back;
   final TextEditingController nomeController = TextEditingController();
   final TextEditingController descricaoController = TextEditingController();
   final TextEditingController localizacaoController = TextEditingController();
@@ -21,7 +21,7 @@ class EditFarm extends StatelessWidget {
             alignment: Alignment.centerLeft,
             child: IconButton(
                 onPressed: () {
-                  back('manage-farm');
+                  back();
                 },
                 icon: const Icon(
                   Icons.arrow_back_rounded,

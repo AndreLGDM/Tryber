@@ -10,7 +10,7 @@ class PicketPage extends StatefulWidget {
       {super.key, required this.novoCadastro, required this.back});
 
   final void Function(String) novoCadastro;
-  final void Function(String) back;
+  final void Function() back;
   final void Function(String) changeScreen;
 
   @override
@@ -52,7 +52,7 @@ class _PicketPageState extends State<PicketPage> {
               alignment: Alignment.centerLeft,
               child: IconButton(
                   onPressed: () {
-                    widget.back('manage-farm');
+                    widget.back();
                   },
                   icon: const Icon(
                     Icons.arrow_back_rounded,
@@ -74,19 +74,18 @@ class _PicketPageState extends State<PicketPage> {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      // ignore: non_constant_identifier_names
-                      for (final PicketInfo in pickets)
+                      for (final picketInfo in pickets)
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
                           child: FarmBoxDesign(
                             action: () {
                               setState(() {
-                                picketAcessado = PicketInfo;
+                                picketAcessado = picketInfo;
                               });
                               widget.changeScreen('manage-picket');
                             },
                             icon: 'assets/images/piquete.png',
-                            text: PicketInfo.nome,
+                            text: picketInfo.nome,
                           ),
                         ),
                     ],

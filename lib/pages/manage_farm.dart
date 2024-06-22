@@ -23,9 +23,14 @@ class ManageFarm extends StatelessWidget {
                   0),
               child: Transform.scale(
                 scale: MediaQuery.of(context).size.height * 0.001,
-                child: Icon(
-                  Icons.account_circle,
-                  size: MediaQuery.of(context).size.height * 0.055,
+                child: IconButton(
+                  onPressed: () {
+                    changeScreen('config-page');
+                  },
+                  icon: Icon(
+                    Icons.account_circle,
+                    size: MediaQuery.of(context).size.height * 0.055,
+                  ),
                   color: const Color(0xFF4C5C65),
                 ),
               ),

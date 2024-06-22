@@ -6,7 +6,7 @@ import 'package:tryber/models/input_design.dart';
 class RecoveyPage extends StatelessWidget {
   const RecoveyPage({super.key, required this.back});
 
-  final void Function(String) back;
+  final void Function() back;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class RecoveyPage extends StatelessWidget {
           alignment: Alignment.centerLeft,
           child: IconButton(
               onPressed: () {
-                back('login-screen');
+                back();
               },
               icon: const Icon(
                 Icons.arrow_back_rounded,

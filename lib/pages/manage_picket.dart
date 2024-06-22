@@ -7,7 +7,7 @@ class ManagePicket extends StatelessWidget {
       {super.key, required this.back, required this.changeScreen});
 
   final void Function(String) changeScreen;
-  final void Function(String) back;
+  final void Function() back;
 
   @override
   Widget build(BuildContext context) {
@@ -26,14 +26,15 @@ class ManagePicket extends StatelessWidget {
               child: Transform.scale(
                 scale: MediaQuery.of(context).size.height * 0.001,
                 child: IconButton(
-                    onPressed: () {
-                      back('picket-page');
-                    },
-                    icon: const Icon(
-                      Icons.arrow_back_rounded,
-                      color: Colors.black,
-                      size: 30,
-                    )),
+                  onPressed: () {
+                    changeScreen('config-page');
+                  },
+                  icon: Icon(
+                    Icons.account_circle,
+                    size: MediaQuery.of(context).size.height * 0.055,
+                  ),
+                  color: const Color(0xFF4C5C65),
+                ),
               ),
             ),
             Padding(

@@ -6,7 +6,7 @@ import 'package:tryber/models/input_design.dart';
 class RegisterTrough extends StatelessWidget {
   const RegisterTrough({super.key, required this.back});
 
-  final void Function(String) back;
+  final void Function() back;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class RegisterTrough extends StatelessWidget {
             alignment: Alignment.centerLeft,
             child: IconButton(
                 onPressed: () {
-                  back('manage-picket');
+                  back();
                 },
                 icon: const Icon(
                   Icons.arrow_back_rounded,

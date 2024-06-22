@@ -11,7 +11,7 @@ class RegisterAnimal extends StatefulWidget {
   const RegisterAnimal(this.cadastrado, {super.key, required this.back});
 
   final void Function(String) cadastrado;
-  final void Function(String) back;
+  final void Function() back;
 
   @override
   State<RegisterAnimal> createState() {
@@ -125,7 +125,7 @@ class _RegisterAnimalState extends State<RegisterAnimal> {
             alignment: Alignment.centerLeft,
             child: IconButton(
                 onPressed: () {
-                  widget.back('manage-picket');
+                  widget.back();
                 },
                 icon: const Icon(
                   Icons.arrow_back_rounded,

@@ -28,10 +28,18 @@ class BodyDesign extends StatefulWidget {
 
 class _BodyDesignState extends State<BodyDesign> {
   var activeScreen = 'login-screen';
+  var previousScreen = '';
 
   void changeScreenWithParam(String text) {
     setState(() {
+      previousScreen = activeScreen;
       activeScreen = text;
+    });
+  }
+
+  void goBack() {
+    setState(() {
+      activeScreen = previousScreen;
     });
   }
 
@@ -41,27 +49,24 @@ class _BodyDesignState extends State<BodyDesign> {
       'login-screen': LoginPage(
           changeScreenWithParam, changeScreenWithParam, changeScreenWithParam,
           selectedLocal: PlatformDispatcher.instance.locale),
-      'register-user':
-          RegisterUser(changeScreenWithParam, back: changeScreenWithParam),
-      'recovery-page': RecoveyPage(back: changeScreenWithParam),
+      'register-user': RegisterUser(changeScreenWithParam, back: goBack),
+      'recovery-page': RecoveyPage(back: goBack),
       'farm-page': FarmPage(changeScreenWithParam,
           changeScreen: changeScreenWithParam,
           abrirFazenda: changeScreenWithParam),
-      'register-farm':
-          RegisterFarm(changeScreenWithParam, back: changeScreenWithParam),
+      'register-farm': RegisterFarm(changeScreenWithParam, back: goBack),
       'manage-farm': ManageFarm(changeScreen: changeScreenWithParam),
-      'edit-farm': EditFarm(back: changeScreenWithParam),
-      'register-animal':
-          RegisterAnimal(changeScreenWithParam, back: changeScreenWithParam),
-      'register-trough': RegisterTrough(back: changeScreenWithParam),
-      'register-picket': RegisterPicket(back: changeScreenWithParam),
+      'edit-farm': EditFarm(back: goBack),
+      'register-animal': RegisterAnimal(changeScreenWithParam, back: goBack),
+      'register-trough': RegisterTrough(back: goBack),
+      'register-picket': RegisterPicket(back: goBack),
       'picket-page': PicketPage(changeScreenWithParam,
-          back: changeScreenWithParam, novoCadastro: changeScreenWithParam),
-      'report-page': ReportPage(back: changeScreenWithParam),
-      'farm-report': FarmReport(back: changeScreenWithParam),
-      'manage-picket': ManagePicket(
-          back: changeScreenWithParam, changeScreen: changeScreenWithParam),
-      'config-page': const ConfigPage(),
+          back: goBack, novoCadastro: changeScreenWithParam),
+      'report-page': ReportPage(back: goBack),
+      'farm-report': FarmReport(back: goBack),
+      'manage-picket':
+          ManagePicket(back: goBack, changeScreen: changeScreenWithParam),
+      'config-page': ConfigPage(back: goBack),
       'teste-api': TesteApi(changeScreenWithParam),
     };
 

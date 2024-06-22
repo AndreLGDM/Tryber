@@ -10,7 +10,7 @@ class RegisterFarm extends StatefulWidget {
   const RegisterFarm(this.changePage, {super.key, required this.back});
 
   final void Function(String) changePage;
-  final void Function(String) back;
+  final void Function() back;
 
   @override
   State<StatefulWidget> createState() {
@@ -99,7 +99,7 @@ class _RegisterFarmState extends State<RegisterFarm> {
             alignment: Alignment.centerLeft,
             child: IconButton(
                 onPressed: () {
-                  widget.back('farm-page');
+                  widget.back();
                 },
                 icon: const Icon(
                   Icons.arrow_back_rounded,
