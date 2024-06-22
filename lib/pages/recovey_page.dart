@@ -16,9 +16,7 @@ class RecoveyPage extends StatelessWidget {
         Container(
           alignment: Alignment.centerLeft,
           child: IconButton(
-              onPressed: () {
-                back();
-              },
+              onPressed: back,
               icon: const Icon(
                 Icons.arrow_back_rounded,
                 color: Colors.black,

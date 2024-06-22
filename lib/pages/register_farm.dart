@@ -98,9 +98,7 @@ class _RegisterFarmState extends State<RegisterFarm> {
           Container(
             alignment: Alignment.centerLeft,
             child: IconButton(
-                onPressed: () {
-                  widget.back();
-                },
+                onPressed: widget.back,
                 icon: const Icon(
                   Icons.arrow_back_rounded,
                   color: Colors.black,

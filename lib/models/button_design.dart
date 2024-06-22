@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ButtonDesign extends StatelessWidget {
-  const ButtonDesign({Key? key, required this.action, required this.text});
+  const ButtonDesign({super.key, required this.action, required this.text});
 
   final String text;
   final void Function() action;

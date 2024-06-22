@@ -26,9 +26,7 @@ class ManagePicket extends StatelessWidget {
               child: Transform.scale(
                 scale: MediaQuery.of(context).size.height * 0.001,
                 child: IconButton(
-                  onPressed: () {
-                    changeScreen('config-page');
-                  },
+                  onPressed: back,
                   icon: Icon(
                     Icons.account_circle,
                     size: MediaQuery.of(context).size.height * 0.055,
