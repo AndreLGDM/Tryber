@@ -81,6 +81,7 @@ flutter:
      - assets/images/piquete.png
      - assets/images/pdf.png
      - assets/images/link.png
+     - assets/images/update.png
 
 flutter_icons:
   android: true

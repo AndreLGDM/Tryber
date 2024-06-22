@@ -72,8 +72,8 @@ class ManagePicket extends StatelessWidget {
                   action: () {
                     changeScreen('teste-api');
                   },
-                  icon: 'assets/images/link.png',
-                  text: 'VINCULAR ANIMAL'),
+                  icon: 'assets/images/update.png',
+                  text: 'ATUALIZAR RAÇÃO'),
             ],
           ),
         ),

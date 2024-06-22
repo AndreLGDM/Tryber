@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:tryber/Services/api_service.dart';
 import 'package:tryber/Services/json_service.dart';
 import 'package:tryber/data/global_var.dart';
@@ -45,12 +46,12 @@ class _TesteApiState extends State<TesteApi> {
 
   void atualizarRacaoApi() {
     String url = urlController.text;
-    apiService = ApiService(url);
+    apiService = ApiService('http://$url:5001');
     String idBrinco = idBrincoController.text;
     String quantidade = novaQuantidadeController.text;
     for (final Animal in animals) {
       if (Animal.idBrinco == idBrinco) {
-        apiService.updateRacao('http://$url:5001', int.parse(quantidade));
+        apiService.updateRacao(idBrinco, int.parse(quantidade));
         widget.changePage('manage-picket');
       }
     }
@@ -72,6 +73,12 @@ class _TesteApiState extends State<TesteApi> {
                 color: Colors.black,
                 size: 30,
               )),
+        ),
+        SizedBox(height: MediaQuery.of(context).size.height * 0.15),
+        Text(
+          'ATUALIZAR RAÇÃO',
+          style:
+              GoogleFonts.kanit(color: const Color(0xFF2DBCB6), fontSize: 36),
         ),
         const SizedBox(height: 100),
         InputDesign(text: 'Id Brinco', controller: idBrincoController),

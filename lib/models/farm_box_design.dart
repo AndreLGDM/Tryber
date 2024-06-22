@@ -28,19 +28,31 @@ class FarmBoxDesign extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20))),
             child: Row(
               children: [
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.1,
-                  child: Image.asset(
-                    icon,
-                    fit: BoxFit.cover,
-                    color: const Color(0xFF4C5C65),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(
+                      MediaQuery.of(context).size.width * 0.025,
+                      MediaQuery.of(context).size.height * 0.002,
+                      0,
+                      0),
+                  child: SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.1,
+                    child: Image.asset(
+                      icon,
+                      fit: BoxFit.cover,
+                      color: const Color(0xFF4C5C65),
+                    ),
                   ),
                 ),
                 Expanded(
-                  child: Text(
-                    text,
-                    style: GoogleFonts.kanit(
-                        fontSize: MediaQuery.of(context).size.height * 0.0221),
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                        left: MediaQuery.of(context).size.width * 0.1),
+                    child: Text(
+                      text,
+                      style: GoogleFonts.kanit(
+                          fontSize:
+                              MediaQuery.of(context).size.height * 0.0221),
+                    ),
                   ),
                 ),
               ],
