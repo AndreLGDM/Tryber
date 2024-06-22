@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tryber/Services/json_service.dart';
 import 'package:tryber/data/global_var.dart';
-import 'package:tryber/models/animal_info.dart';
+import 'package:tryber/Objects/animal_info.dart';
 import 'package:tryber/models/button_design.dart';
 import 'package:tryber/models/custom_dropdown.dart';
 import 'package:tryber/models/input_design.dart';
@@ -103,7 +103,7 @@ class _RegisterAnimalState extends State<RegisterAnimal> {
       setState(() {
         animais.add(AnimalInfo(tipo, subTipo, idBrinco, peso));
         GenericService<AnimalInfo>(
-                toJson: (farmInfo) => farmInfo.toJson(),
+                toJson: (animalInfo) => animalInfo.toJson(),
                 fromJson: AnimalInfo.fromJson)
             .saveList(animais,
                 '${picketAcessado?.nome}_${picketAcessado?.tipo}.json');

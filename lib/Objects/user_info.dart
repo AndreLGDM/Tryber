@@ -1,4 +1,4 @@
-import 'package:tryber/models/farm_info.dart';
+import 'package:tryber/Objects/farm_info.dart';
 
 class UserInfo {
   final int id;

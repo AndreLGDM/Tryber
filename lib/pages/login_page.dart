@@ -4,7 +4,7 @@ import 'package:tryber/models/input_design.dart';
 import 'package:tryber/models/input_password.dart';
 import 'package:tryber/Services/json_service.dart';
 import 'package:tryber/models/text_button_design.dart';
-import 'package:tryber/models/user_info.dart';
+import 'package:tryber/Objects/user_info.dart';
 import 'package:tryber/data/global_var.dart';
 import 'package:tryber/extensions/context_extension.dart';
 

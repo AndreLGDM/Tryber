@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:tryber/Services/json_service.dart';
 import 'package:tryber/data/global_var.dart';
 import 'package:tryber/models/farm_box_design.dart';
-import 'package:tryber/models/picket_info.dart';
+import 'package:tryber/Objects/picket_info.dart';
 
 class PicketPage extends StatefulWidget {
   const PicketPage(this.changeScreen,

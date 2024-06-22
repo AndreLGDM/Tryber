@@ -30,7 +30,7 @@ class ConfigPage extends StatelessWidget {
               ),
               Padding(
                 padding: EdgeInsets.fromLTRB(
-                    MediaQuery.of(context).size.width * 0.7,
+                    MediaQuery.of(context).size.width * 0.74,
                     MediaQuery.of(context).size.height * 0.015,
                     MediaQuery.of(context).size.height * 0.015,
                     0),

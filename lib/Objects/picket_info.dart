@@ -1,13 +1,16 @@
-import 'package:tryber/models/animal_info.dart';
+import 'package:tryber/Objects/animal_info.dart';
+import 'package:tryber/Objects/trough_info.dart';
 
 class PicketInfo {
-  PicketInfo(this.nome, this.tamanho, this.descricao, this.tipo, this.animals);
+  PicketInfo(this.nome, this.tamanho, this.descricao, this.tipo, this.animals,
+      this.cochos);
 
   final String nome;
   final String tamanho;
   final String descricao;
   final String tipo;
   List<AnimalInfo> animals;
+  List<TroughInfo> cochos;
 
   Map<String, dynamic> toJson() {
     return {
@@ -16,6 +19,7 @@ class PicketInfo {
       'descricao': descricao,
       'tipo': tipo,
       'animals': animals,
+      'cochos': cochos,
     };
   }
 
@@ -27,6 +31,9 @@ class PicketInfo {
       json['tipo'],
       (json['animals'] as List<dynamic>)
           .map((animalJson) => AnimalInfo.fromJson(animalJson))
+          .toList(),
+      (json['cochos'] as List<dynamic>)
+          .map((cochoJson) => TroughInfo.fromJson(cochoJson))
           .toList(),
     );
   }

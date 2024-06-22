@@ -32,4 +32,16 @@ class GenericService<T> {
     currentList.removeWhere((item) => toJson(item) == toJson(itemToDelete));
     await saveList(currentList, fileName);
   }
+
+  Future<void> renameFile(String oldFileName, String newFileName) async {
+    Directory appDocDir = await getApplicationDocumentsDirectory();
+    File oldFile = File('${appDocDir.path}/$oldFileName.json');
+    File newFile = File('${appDocDir.path}/$newFileName.json');
+
+    if (await oldFile.exists()) {
+      await oldFile.rename(newFile.path);
+    } else {
+      throw Exception("File with name $oldFileName.json does not exist");
+    }
+  }
 }

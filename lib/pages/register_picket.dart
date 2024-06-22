@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:tryber/models/button_design.dart';
 import 'package:tryber/models/custom_dropdown.dart';
 import 'package:tryber/models/input_design.dart';
-import 'package:tryber/models/picket_info.dart';
+import 'package:tryber/Objects/picket_info.dart';
 import 'package:tryber/Services/json_service.dart';
 import 'package:tryber/data/global_var.dart';
 
@@ -44,34 +44,34 @@ class _RegisterPicketState extends State<RegisterPicket> {
     });
   }
 
+  void cadastrarPiquete() {
+    final String tipo = selectedType ?? '';
+    final String nome = nomeController.text;
+    final String descricao = descricaoController.text;
+    final String tamanho = tamanhoController.text;
+
+    if (nome.isNotEmpty &&
+        descricao.isNotEmpty &&
+        tamanho.isNotEmpty &&
+        tipo.isNotEmpty) {
+      List<PicketInfo> piquetes = List.from(pickets);
+      setState(() {
+        piquetes.add(PicketInfo(nome, tamanho, descricao, tipo, [], []));
+        GenericService<PicketInfo>(
+                toJson: (picketInfo) => picketInfo.toJson(),
+                fromJson: PicketInfo.fromJson)
+            .saveList(piquetes, '${fazendaAcessada?.nome}.json');
+        widget.back();
+      });
+
+      nomeController.clear();
+      descricaoController.clear();
+      tamanhoController.clear();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    void cadastrarPiquete() {
-      final String tipo = selectedType ?? '';
-      final String nome = nomeController.text;
-      final String descricao = descricaoController.text;
-      final String tamanho = tamanhoController.text;
-
-      if (nome.isNotEmpty &&
-          descricao.isNotEmpty &&
-          tamanho.isNotEmpty &&
-          tipo.isNotEmpty) {
-        List<PicketInfo> piquetes = List.from(pickets);
-        setState(() {
-          piquetes.add(PicketInfo(nome, tamanho, descricao, tipo, []));
-          GenericService<PicketInfo>(
-                  toJson: (picketInfo) => picketInfo.toJson(),
-                  fromJson: PicketInfo.fromJson)
-              .saveList(piquetes, '${fazendaAcessada?.nome}.json');
-          widget.back();
-        });
-
-        nomeController.clear();
-        descricaoController.clear();
-        tamanhoController.clear();
-      }
-    }
-
     return SingleChildScrollView(
       child: Column(
         children: [

@@ -10,6 +10,7 @@ void main() {
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
         AppLocalizations.delegate,
       ],
       supportedLocales: const [

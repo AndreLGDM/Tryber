@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tryber/models/farm_info.dart';
+import 'package:tryber/Objects/farm_info.dart';
 import 'package:tryber/Services/json_service.dart';
 import 'package:tryber/models/farm_box_design.dart';
 import 'package:tryber/data/global_var.dart';

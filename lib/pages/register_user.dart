@@ -4,7 +4,7 @@ import 'package:tryber/models/input_design.dart';
 import 'package:tryber/models/button_design.dart';
 import 'package:tryber/models/input_password.dart';
 import 'package:tryber/Services/json_service.dart';
-import 'package:tryber/models/user_info.dart';
+import 'package:tryber/Objects/user_info.dart';
 import 'package:tryber/data/global_var.dart';
 
 class RegisterUser extends StatefulWidget {
@@ -155,112 +155,112 @@ class _RegisterUserState extends State<RegisterUser> {
         numberRegex.hasMatch(password);
   }
 
-  @override
-  Widget build(BuildContext context) {
-    void cadastrarCliente() {
-      final String nome = nomeController.text.trim();
-      final String sobrenome = sobrenomeController.text.trim();
-      final String email = emailController.text.trim();
-      final String telefone = telefoneController.text.trim();
-      final String senha = senhaController.text;
-      final String confirmarSenha = confirmarSenhaController.text;
-      final int id = users.length + 1;
+  void cadastrarCliente() {
+    final String nome = nomeController.text.trim();
+    final String sobrenome = sobrenomeController.text.trim();
+    final String email = emailController.text.trim();
+    final String telefone = telefoneController.text.trim();
+    final String senha = senhaController.text;
+    final String confirmarSenha = confirmarSenhaController.text;
+    final int id = users.length + 1;
 
-      if (nome.isEmpty ||
-          sobrenome.isEmpty ||
-          email.isEmpty ||
-          telefone.isEmpty ||
-          senha.isEmpty ||
-          confirmarSenha.isEmpty) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Por favor, preencha todos os campos.'),
-            duration: Duration(seconds: 2),
-          ),
-        );
-        return;
-      }
-
-      if (senha != confirmarSenha) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('As senhas não coincidem.'),
-            duration: Duration(seconds: 2),
-          ),
-        );
-        return;
-      }
-
-      if (!isValidEmail(email)) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Por favor, insira um e-mail válido.'),
-            duration: Duration(seconds: 2),
-          ),
-        );
-        return;
-      }
-
-      if (isEmailRegistered(email)) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text(
-                'E-mail já cadastrado. Por favor, use outro e-mail ou tente fazer o login.'),
-            duration: Duration(seconds: 2),
-          ),
-        );
-        return;
-      }
-
-      if (!isStrongPassword(senha)) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text(
-                'A senha deve conter pelo menos 6 dígitos incluindo ao menos um símbolo, uma letra maiúscula e um número.'),
-            duration: Duration(seconds: 3, milliseconds: 5),
-          ),
-        );
-        return;
-      }
-
-      if (!isValidPhoneNumber(telefone)) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text(
-                'Por favor, insira um número de telefone válido para o Brasil incluindo o DDD.'),
-            duration: Duration(seconds: 2),
-          ),
-        );
-        return;
-      }
-
-      if (nome.toLowerCase() == sobrenome.toLowerCase()) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('O sobrenome deve ser diferente do nome.'),
-            duration: Duration(seconds: 2),
-          ),
-        );
-        return;
-      }
-      List<UserInfo> usuarios = List.from(users);
-      usuarios.add(UserInfo(id, nome, sobrenome, email, telefone, senha, []));
-      GenericService<UserInfo>(
-              toJson: (userInfo) => userInfo.toJson(),
-              fromJson: UserInfo.fromJson)
-          .saveList(usuarios, 'user.json');
-
-      widget.cadastrado('login-page');
-
-      // Limpa os campos após o cadastro
-      nomeController.clear();
-      sobrenomeController.clear();
-      emailController.clear();
-      telefoneController.clear();
-      senhaController.clear();
-      confirmarSenhaController.clear();
+    if (nome.isEmpty ||
+        sobrenome.isEmpty ||
+        email.isEmpty ||
+        telefone.isEmpty ||
+        senha.isEmpty ||
+        confirmarSenha.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Por favor, preencha todos os campos.'),
+          duration: Duration(seconds: 2),
+        ),
+      );
+      return;
     }
 
+    if (senha != confirmarSenha) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('As senhas não coincidem.'),
+          duration: Duration(seconds: 2),
+        ),
+      );
+      return;
+    }
+
+    if (!isValidEmail(email)) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Por favor, insira um e-mail válido.'),
+          duration: Duration(seconds: 2),
+        ),
+      );
+      return;
+    }
+
+    if (isEmailRegistered(email)) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(
+              'E-mail já cadastrado. Por favor, use outro e-mail ou tente fazer o login.'),
+          duration: Duration(seconds: 2),
+        ),
+      );
+      return;
+    }
+
+    if (!isStrongPassword(senha)) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(
+              'A senha deve conter pelo menos 6 dígitos incluindo ao menos um símbolo, uma letra maiúscula e um número.'),
+          duration: Duration(seconds: 3, milliseconds: 5),
+        ),
+      );
+      return;
+    }
+
+    if (!isValidPhoneNumber(telefone)) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(
+              'Por favor, insira um número de telefone válido para o Brasil incluindo o DDD.'),
+          duration: Duration(seconds: 2),
+        ),
+      );
+      return;
+    }
+
+    if (nome.toLowerCase() == sobrenome.toLowerCase()) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('O sobrenome deve ser diferente do nome.'),
+          duration: Duration(seconds: 2),
+        ),
+      );
+      return;
+    }
+    List<UserInfo> usuarios = List.from(users);
+    usuarios.add(UserInfo(id, nome, sobrenome, email, telefone, senha, []));
+    GenericService<UserInfo>(
+            toJson: (userInfo) => userInfo.toJson(),
+            fromJson: UserInfo.fromJson)
+        .saveList(usuarios, 'user.json');
+
+    widget.cadastrado('login-page');
+
+    // Limpa os campos após o cadastro
+    nomeController.clear();
+    sobrenomeController.clear();
+    emailController.clear();
+    telefoneController.clear();
+    senhaController.clear();
+    confirmarSenhaController.clear();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
         children: [

@@ -1,4 +1,4 @@
-import 'package:tryber/models/picket_info.dart';
+import 'package:tryber/Objects/picket_info.dart';
 
 class FarmInfo {
   final String nome;

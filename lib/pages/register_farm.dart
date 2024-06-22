@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tryber/models/button_design.dart';
-import 'package:tryber/models/farm_info.dart';
+import 'package:tryber/Objects/farm_info.dart';
 import 'package:tryber/data/global_var.dart';
 import 'package:tryber/Services/json_service.dart';
 import 'package:tryber/models/input_design.dart';
@@ -54,43 +54,41 @@ class _RegisterFarmState extends State<RegisterFarm> {
     return false;
   }
 
+  void cadastrarFazenda() {
+    final String nome = nomeController.text;
+    final String descricao = descricaoController.text;
+    final String localizacao = localizacaoController.text;
+
+    if (nome.isNotEmpty && descricao.isNotEmpty && localizacao.isNotEmpty) {
+      if (isFarmRegistered(nome)) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Fazenda já cadastrada. Por favor, use outro nome.'),
+            duration: Duration(seconds: 2),
+          ),
+        );
+        return;
+      }
+      List<FarmInfo> fazendas = List.from(farms);
+      setState(() {
+        fazendas.add(FarmInfo(nome, descricao, localizacao, []));
+
+        GenericService<FarmInfo>(
+                toJson: (farmInfo) => farmInfo.toJson(),
+                fromJson: FarmInfo.fromJson)
+            .saveList(
+                fazendas, '${usuarioLogado?.nome}_${usuarioLogado?.id}.json');
+        widget.changePage('farm-page');
+      });
+
+      nomeController.clear();
+      descricaoController.clear();
+      localizacaoController.clear();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    @override
-    void cadastrarFazenda() {
-      final String nome = nomeController.text;
-      final String descricao = descricaoController.text;
-      final String localizacao = localizacaoController.text;
-
-      if (nome.isNotEmpty && descricao.isNotEmpty && localizacao.isNotEmpty) {
-        if (isFarmRegistered(nome)) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content:
-                  Text('Fazenda já cadastrada. Por favor, use outro nome.'),
-              duration: Duration(seconds: 2),
-            ),
-          );
-          return;
-        }
-        List<FarmInfo> fazendas = List.from(farms);
-        setState(() {
-          fazendas.add(FarmInfo(nome, descricao, localizacao, []));
-
-          GenericService<FarmInfo>(
-                  toJson: (farmInfo) => farmInfo.toJson(),
-                  fromJson: FarmInfo.fromJson)
-              .saveList(
-                  fazendas, '${usuarioLogado?.nome}_${usuarioLogado?.id}.json');
-          widget.changePage('farm-page');
-        });
-
-        nomeController.clear();
-        descricaoController.clear();
-        localizacaoController.clear();
-      }
-    }
-
     return SingleChildScrollView(
       child: Column(
         children: [
