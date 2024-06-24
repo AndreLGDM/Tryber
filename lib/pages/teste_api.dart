@@ -7,7 +7,7 @@ import 'package:tryber/data/global_var.dart';
 import 'package:tryber/Objects/animal_info.dart';
 import 'package:tryber/models/button_design.dart';
 import 'package:tryber/models/custom_dropdown.dart';
-import 'package:tryber/models/input_design.dart';
+import 'package:tryber/models/input_portion.dart';
 
 class TesteApi extends StatefulWidget {
   const TesteApi(this.changePage, {super.key});
@@ -28,6 +28,8 @@ class _TesteApiState extends State<TesteApi> {
   final TextEditingController idBrincoController = TextEditingController();
   final TextEditingController novaQuantidadeController =
       TextEditingController();
+  String? selectedAnimal;
+  String? selectedTrough;
   late GenericService animalsService;
   late GenericService troughsService;
   List animals = picketAcessado?.animals ?? [];
@@ -78,6 +80,15 @@ class _TesteApiState extends State<TesteApi> {
     }
   }
 
+  void vincularAnimal(){
+    final String animal = selectedAnimal ?? '';
+    final String cocho = selectedTrough ?? '';
+    if(animal.isNotEmpty && cocho.isNotEmpty){
+      for(final trough in troughs){
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -110,7 +121,9 @@ class _TesteApiState extends State<TesteApi> {
               list: animals
                   .map((animal) => (animal as AnimalInfo).idBrinco)
                   .toList(),
-              onChanged: (newF) {}),
+              onChanged: (newValue) {
+                selectedAnimal = newValue;
+              }),
           SizedBox(height: MediaQuery.of(context).size.height * 0.05),
           CustomDropdownWidget(
               key: dropdownKey2,
@@ -118,11 +131,23 @@ class _TesteApiState extends State<TesteApi> {
               list: troughs
                   .map((trough) => (trough as TroughInfo).codigo)
                   .toList(),
-              onChanged: (newF) {}),
-          const SizedBox(height: 50),
-          InputDesign(text: 'Url', controller: urlController),
-          const SizedBox(height: 50),
-          ButtonDesign(action: atualizarRacaoApi, text: 'ENVIAR')
+              onChanged: (newValue) {
+                selectedTrough = newValue;
+              }),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+          Row(
+            children: [
+              Padding(
+                padding: EdgeInsets.only(
+                    left: MediaQuery.of(context).size.width * 0.1,
+                    right: MediaQuery.of(context).size.width * 0.2),
+                child: const InputPortion(text: 'QUANTIDADE DE RAÇÃO'),
+              ),
+              const InputPortion(text: 'PORÇÃO DE RAÇÃO'),
+            ],
+          ),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.12),
+          ButtonDesign(action: atualizarRacaoApi, text: 'VINCULAR')
         ],
       ),
     );

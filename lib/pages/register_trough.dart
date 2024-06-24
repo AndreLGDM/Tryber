@@ -64,7 +64,7 @@ class _RegisterTroughState extends State<RegisterTrough> {
 
     List<TroughInfo> cochos = List.from(trough);
     setState(() {
-      cochos.add(TroughInfo(codigo, descricao, numeroBaias, tipoRacao));
+      cochos.add(TroughInfo(codigo, descricao, numeroBaias, tipoRacao, []));
       GenericService<TroughInfo>(
               toJson: (troughInfo) => troughInfo.toJson(),
               fromJson: TroughInfo.fromJson)
