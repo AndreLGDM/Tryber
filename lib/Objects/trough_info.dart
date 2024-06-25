@@ -34,6 +34,6 @@ class TroughInfo {
 
   @override
   String toString() {
-    return 'CochoInfo { codigo: $codigo, descricao: $descricao, numeroBaias: $numeroBaias, tipoRacao: $tipoRacao }';
+    return 'CochoInfo { codigo: $codigo, descricao: $descricao, numero de Baias: $numeroBaias, tipo de Racao: $tipoRacao, animais: $animals }';
   }
 }

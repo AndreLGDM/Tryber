@@ -36,8 +36,8 @@ class _RegisterTroughState extends State<RegisterTrough> {
   }
 
   Future<void> loadTrough() async {
-    List loadedTroughs = await troughInfoService
-        .loadList('${picketAcessado?.nome}_trought}.json');
+    List loadedTroughs =
+        await troughInfoService.loadList('${picketAcessado?.nome}_trough.json');
     setState(() {
       trough = loadedTroughs;
     });

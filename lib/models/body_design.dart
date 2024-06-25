@@ -67,7 +67,7 @@ class _BodyDesignState extends State<BodyDesign> {
       'manage-picket':
           ManagePicket(back: goBack, changeScreen: changeScreenWithParam),
       'config-page': ConfigPage(back: goBack),
-      'teste-api': TesteApi(changeScreenWithParam),
+      'teste-api': TesteApi(back: goBack),
     };
 
     Widget screenWidget = screenWidgets[activeScreen] ??

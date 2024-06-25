@@ -7,12 +7,13 @@ import 'package:tryber/data/global_var.dart';
 import 'package:tryber/Objects/animal_info.dart';
 import 'package:tryber/models/button_design.dart';
 import 'package:tryber/models/custom_dropdown.dart';
+import 'package:tryber/models/input_design.dart';
 import 'package:tryber/models/input_portion.dart';
 
 class TesteApi extends StatefulWidget {
-  const TesteApi(this.changePage, {super.key});
+  const TesteApi({super.key, required this.back});
 
-  final void Function(String) changePage;
+  final void Function() back;
 
   @override
   State<TesteApi> createState() {
@@ -51,7 +52,6 @@ class _TesteApiState extends State<TesteApi> {
         toJson: (animalInfo) => animalInfo.toJson());
     loadTroughInfo();
     loadAnimalInfo();
-    loadTroughAnimalsInfo();
   }
 
   Future<void> loadAnimalInfo() async {
@@ -73,10 +73,10 @@ class _TesteApiState extends State<TesteApi> {
   }
 
   Future<void> loadTroughAnimalsInfo() async {
-    List loadedTroughAnimals = await troughsService
+    List loadedTroughAnimals = await troughAnimalsService
         .loadList('${cochoSelecionado?.codigo}_Animals.json');
     setState(() {
-      troughs = loadedTroughAnimals;
+      troughAnimals = loadedTroughAnimals;
     });
   }
 
@@ -88,42 +88,69 @@ class _TesteApiState extends State<TesteApi> {
     for (final animal in animals) {
       if (animal.idBrinco == idBrinco) {
         apiService.updateRacao(idBrinco, int.parse(quantidade));
-        widget.changePage('manage-picket');
+        widget.back;
         break;
       }
     }
   }
 
   void vincularAnimal() {
-    final String animal = selectedAnimal ?? '';
-    final String cocho = selectedTrough ?? '';
-    if (animal.isNotEmpty && cocho.isNotEmpty) {
+    final String animalId = selectedAnimal ?? '';
+    final String cochoId = selectedTrough ?? '';
+    if (animalId.isNotEmpty && cochoId.isNotEmpty) {
       for (final trough in troughs) {
-        for (final animalInfo in trough.animals) {
-          if (animalInfo.idBrinco == animal) {
-            cochoSelecionado = trough;
-            troughAnimalsService.deleteItem(
-                animalInfo, '${cochoSelecionado?.codigo}_Animals.json');
+        cochoSelecionado = trough;
+        loadTroughAnimalsInfo();
+        for (final animalInfo in troughAnimals) {
+          if (animalInfo.idBrinco == animalId) {
+            setState(() {
+              troughAnimalsService.deleteItem(
+                  animalInfo, '${cochoSelecionado?.codigo}_Animals.json');
+            });
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content:
-                    Text('Animal Removido de ${cochoSelecionado?.codigo}.'),
+                    Text('Animal removido de ${cochoSelecionado?.codigo}.'),
                 duration: const Duration(seconds: 2),
               ),
             );
-            return;
+            break;
           }
         }
-        if (trough.codigo == cocho) {
+      }
+      for (final trough in troughs) {
+        if (trough.codigo == cochoId) {
           cochoSelecionado = trough;
+          loadTroughAnimalsInfo();
           for (final animal in animals) {
-            if (animal.idBrinco == animal) {
-              List<AnimalInfo> animaisCocho = List.from(trough.animals);
-              animaisCocho.add(animal as AnimalInfo);
+            if (animal.idBrinco == animalId) {
+              List<AnimalInfo> animaisCocho = List.from(troughAnimals);
+              setState(() {
+                animaisCocho.add(animal);
+                GenericService<AnimalInfo>(
+                    fromJson: AnimalInfo.fromJson,
+                    toJson: (animalCochoInfo) =>
+                        animalCochoInfo.toJson()).saveList(
+                    animaisCocho, '${cochoSelecionado?.codigo}_Animals.json');
+              });
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content:
+                      Text('Animal Vinculado a ${cochoSelecionado?.codigo}.'),
+                  duration: const Duration(seconds: 2),
+                ),
+              );
+              break;
             }
           }
         }
       }
+      if (urlController.text.isNotEmpty &&
+          idBrincoController.text.isNotEmpty &&
+          novaQuantidadeController.text.isEmpty) {
+        atualizarRacaoApi();
+      }
+      widget.back;
     }
   }
 
@@ -136,9 +163,7 @@ class _TesteApiState extends State<TesteApi> {
           Container(
             alignment: Alignment.centerLeft,
             child: IconButton(
-                onPressed: () {
-                  widget.changePage('manage-picket');
-                },
+                onPressed: widget.back,
                 icon: const Icon(
                   Icons.arrow_back_rounded,
                   color: Colors.black,
@@ -153,6 +178,8 @@ class _TesteApiState extends State<TesteApi> {
                 fontSize: MediaQuery.of(context).size.height * 0.04),
           ),
           SizedBox(height: MediaQuery.of(context).size.height * 0.12),
+          InputDesign(text: 'URL', controller: urlController),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.05),
           CustomDropdownWidget(
               key: dropdownKey,
               text: 'SELECIONE O ANIMAL',
@@ -185,7 +212,7 @@ class _TesteApiState extends State<TesteApi> {
             ],
           ),
           SizedBox(height: MediaQuery.of(context).size.height * 0.12),
-          ButtonDesign(action: atualizarRacaoApi, text: 'VINCULAR')
+          ButtonDesign(action: vincularAnimal, text: 'VINCULAR')
         ],
       ),
     );
