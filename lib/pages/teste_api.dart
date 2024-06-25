@@ -32,8 +32,10 @@ class _TesteApiState extends State<TesteApi> {
   String? selectedTrough;
   late GenericService animalsService;
   late GenericService troughsService;
+  late GenericService troughAnimalsService;
   List animals = picketAcessado?.animals ?? [];
   List troughs = picketAcessado?.cochos ?? [];
+  List troughAnimals = cochoSelecionado?.animals ?? [];
 
   @override
   void initState() {
@@ -44,8 +46,12 @@ class _TesteApiState extends State<TesteApi> {
     troughsService = GenericService<TroughInfo>(
         fromJson: TroughInfo.fromJson,
         toJson: (troughInfo) => troughInfo.toJson());
+    troughAnimalsService = GenericService<AnimalInfo>(
+        fromJson: AnimalInfo.fromJson,
+        toJson: (animalInfo) => animalInfo.toJson());
     loadTroughInfo();
     loadAnimalInfo();
+    loadTroughAnimalsInfo();
   }
 
   Future<void> loadAnimalInfo() async {
@@ -66,6 +72,14 @@ class _TesteApiState extends State<TesteApi> {
     });
   }
 
+  Future<void> loadTroughAnimalsInfo() async {
+    List loadedTroughAnimals = await troughsService
+        .loadList('${cochoSelecionado?.codigo}_Animals.json');
+    setState(() {
+      troughs = loadedTroughAnimals;
+    });
+  }
+
   void atualizarRacaoApi() {
     String url = urlController.text;
     apiService = ApiService('http://$url:5001');
@@ -80,11 +94,35 @@ class _TesteApiState extends State<TesteApi> {
     }
   }
 
-  void vincularAnimal(){
+  void vincularAnimal() {
     final String animal = selectedAnimal ?? '';
     final String cocho = selectedTrough ?? '';
-    if(animal.isNotEmpty && cocho.isNotEmpty){
-      for(final trough in troughs){
+    if (animal.isNotEmpty && cocho.isNotEmpty) {
+      for (final trough in troughs) {
+        for (final animalInfo in trough.animals) {
+          if (animalInfo.idBrinco == animal) {
+            cochoSelecionado = trough;
+            troughAnimalsService.deleteItem(
+                animalInfo, '${cochoSelecionado?.codigo}_Animals.json');
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content:
+                    Text('Animal Removido de ${cochoSelecionado?.codigo}.'),
+                duration: const Duration(seconds: 2),
+              ),
+            );
+            return;
+          }
+        }
+        if (trough.codigo == cocho) {
+          cochoSelecionado = trough;
+          for (final animal in animals) {
+            if (animal.idBrinco == animal) {
+              List<AnimalInfo> animaisCocho = List.from(trough.animals);
+              animaisCocho.add(animal as AnimalInfo);
+            }
+          }
+        }
       }
     }
   }
