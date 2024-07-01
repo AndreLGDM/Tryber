@@ -8,12 +8,14 @@ class UserInfo {
   final String telefone;
   final String senha;
   List<FarmInfo> farms;
+  final String objectType = 'user';
 
   UserInfo(this.id, this.nome, this.sobrenome, this.email, this.telefone,
       this.senha, this.farms);
 
   Map<String, dynamic> toJson() {
     return {
+      'objectType': objectType,
       'id': id,
       'nome': nome,
       'sobrenome': sobrenome,

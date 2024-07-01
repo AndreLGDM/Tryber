@@ -4,10 +4,12 @@ class AnimalInfo {
   final String tipo;
   final String subtipo;
   final String idBrinco;
+  final String objectType = 'animal';
   final String peso;
 
   Map<String, dynamic> toJson() {
     return {
+      'objectType': objectType,
       'tipo': tipo,
       'subtipo': subtipo,
       'idBrinco': idBrinco,

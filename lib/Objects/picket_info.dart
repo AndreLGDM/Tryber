@@ -10,16 +10,18 @@ class PicketInfo {
   final String descricao;
   final String tipo;
   List<AnimalInfo> animals;
+  final String objectType = 'picket';
   List<TroughInfo> cochos;
 
   Map<String, dynamic> toJson() {
     return {
+      'objectType': objectType,
       'nome': nome,
       'tamanho': tamanho,
       'descricao': descricao,
       'tipo': tipo,
-      'animals': animals,
-      'cochos': cochos,
+      'animals': animals.map((animals) => animals.toJson()).toList(),
+      'cochos': cochos.map((cochos) => cochos.toJson()).toList(),
     };
   }
 

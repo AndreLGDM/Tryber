@@ -29,18 +29,7 @@ class GenericService<T> {
 
   Future<void> deleteItem(T itemToDelete, String fileName) async {
     List<T> currentList = await loadList(fileName);
-    Map<String, dynamic> jsonToDelete = toJson(itemToDelete);
-    var firstKeyToDelete = jsonToDelete.keys.first;
-    var firstValueToDelete = jsonToDelete[firstKeyToDelete];
-
-    currentList.removeWhere((item) {
-      var jsonItem = toJson(item);
-      var firstKey = jsonItem.keys.first;
-      var firstValue = jsonItem[firstKey];
-      return firstValue == firstValueToDelete;
-    });
-
-    await saveList(currentList, fileName);
+    currentList.removeWhere((item) => toJson(item) == toJson(itemToDelete));
   }
 
   Future<void> renameFile(String oldFileName, String newFileName) async {

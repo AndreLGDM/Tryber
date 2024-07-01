@@ -39,7 +39,7 @@ class ManagePicket extends StatelessWidget {
               padding: EdgeInsets.only(
                   top: MediaQuery.of(context).size.height * 0.013),
               child: Text(
-                'GERENCIAR PIQUETES',
+                'GERENCIAR PIQUETE',
                 style: GoogleFonts.kanit(
                     color: const Color(0xFF2DBCB6),
                     fontSize: MediaQuery.of(context).size.width * 0.065),
@@ -59,20 +59,13 @@ class ManagePicket extends StatelessWidget {
                   },
                   icon: 'assets/images/cow.png',
                   text: 'CADASTRAR ANIMAL'),
-              const SizedBox(height: 30),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.02),
               FarmBoxDesign(
                   action: () {
-                    changeScreen('register-trough');
-                  },
-                  icon: 'assets/images/cow_eating.png',
-                  text: 'CADASTRAR COCHO'),
-              const SizedBox(height: 30),
-              FarmBoxDesign(
-                  action: () {
-                    changeScreen('teste-api');
+                    changeScreen('link-trough');
                   },
                   icon: 'assets/images/link.png',
-                  text: 'VINCULAR ANIMAL'),
+                  text: 'VINCULAR COCHO'),
             ],
           ),
         ),

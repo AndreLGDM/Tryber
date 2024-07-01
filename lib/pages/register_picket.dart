@@ -37,8 +37,8 @@ class _RegisterPicketState extends State<RegisterPicket> {
   }
 
   Future<void> loadPickets() async {
-    List loadedFarms =
-        await picketInfoService.loadList('${fazendaAcessada?.nome}.json');
+    List loadedFarms = await picketInfoService
+        .loadList('${fazendaAcessada?.nome}_pickets.json');
     setState(() {
       pickets = loadedFarms;
     });
@@ -60,7 +60,7 @@ class _RegisterPicketState extends State<RegisterPicket> {
         GenericService<PicketInfo>(
                 toJson: (picketInfo) => picketInfo.toJson(),
                 fromJson: PicketInfo.fromJson)
-            .saveList(piquetes, '${fazendaAcessada?.nome}.json');
+            .saveList(piquetes, '${fazendaAcessada?.nome}_pickets.json');
         widget.back();
       });
 

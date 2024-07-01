@@ -71,7 +71,7 @@ class _RegisterFarmState extends State<RegisterFarm> {
       }
       List<FarmInfo> fazendas = List.from(farms);
       setState(() {
-        fazendas.add(FarmInfo(nome, descricao, localizacao, []));
+        fazendas.add(FarmInfo(nome, descricao, localizacao, [], []));
 
         GenericService<FarmInfo>(
                 toJson: (farmInfo) => farmInfo.toJson(),

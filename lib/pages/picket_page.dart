@@ -34,8 +34,8 @@ class _PicketPageState extends State<PicketPage> {
   }
 
   Future<void> loadPickets() async {
-    List loadedpickets =
-        await picketInfoService.loadList('${fazendaAcessada?.nome}.json');
+    List loadedpickets = await picketInfoService
+        .loadList('${fazendaAcessada?.nome}_pickets.json');
     setState(() {
       pickets = loadedpickets;
     });
@@ -60,7 +60,7 @@ class _PicketPageState extends State<PicketPage> {
             ),
             SizedBox(height: constraints.maxHeight * 0.15),
             Text(
-              'PIQUETE',
+              'PIQUETES',
               style: GoogleFonts.kanit(
                   color: const Color(0xFF2DBCB6), fontSize: 36),
             ),

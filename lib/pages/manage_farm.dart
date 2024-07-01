@@ -59,20 +59,27 @@ class ManageFarm extends StatelessWidget {
                   },
                   icon: 'assets/images/casinha.png',
                   text: 'EDITAR FAZENDA'),
-              const SizedBox(height: 30),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.02),
               FarmBoxDesign(
                   action: () {
                     changeScreen('report-page');
                   },
                   icon: 'assets/images/paper.png',
                   text: 'RELATORIOS'),
-              const SizedBox(height: 30),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+              FarmBoxDesign(
+                  action: () {
+                    changeScreen('register-trough');
+                  },
+                  icon: 'assets/images/cow_eating.png',
+                  text: 'CADASTRAR COCHO'),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.02),
               FarmBoxDesign(
                   action: () {
                     changeScreen('picket-page');
                   },
                   icon: 'assets/images/piquete.png',
-                  text: 'PIQUETE'),
+                  text: 'PIQUETES'),
             ],
           ),
         ),

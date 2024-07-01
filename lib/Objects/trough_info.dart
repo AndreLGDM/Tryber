@@ -8,15 +8,17 @@ class TroughInfo {
   final String descricao;
   final String numeroBaias;
   final String tipoRacao;
+  final String objectType = 'trough';
   final List<AnimalInfo> animals;
 
   Map<String, dynamic> toJson() {
     return {
+      'objectType': objectType,
       'codigo': codigo,
       'descricao': descricao,
       'numeroBaias': numeroBaias,
       'tipoRacao': tipoRacao,
-      'animals': animals,
+      'animals': animals.map((animals) => animals.toJson()).toList(),
     };
   }
 
