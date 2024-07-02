@@ -74,7 +74,8 @@ class _PicketPageState extends State<PicketPage> {
                     children: [
                       for (final picketInfo in pickets)
                         Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                          padding: EdgeInsets.fromLTRB(0, 0, 0,
+                              MediaQuery.of(context).size.height * 0.018),
                           child: FarmBoxDesign(
                             action: () {
                               setState(() {
