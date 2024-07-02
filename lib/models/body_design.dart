@@ -70,7 +70,7 @@ class _BodyDesignState extends State<BodyDesign> {
           ManagePicket(back: goBack, changeScreen: changeScreenWithParam),
       'config-page': ConfigPage(back: goBack),
       'link-trough': LinkTrough(back: goBack),
-      'trough-page': const TroughPage(),
+      'trough-page': TroughPage(back: goBack),
     };
 
     Widget screenWidget = screenWidgets[activeScreen] ??

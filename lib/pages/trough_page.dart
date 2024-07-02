@@ -6,7 +6,9 @@ import 'package:tryber/data/global_var.dart';
 import 'package:tryber/models/farm_box_design.dart';
 
 class TroughPage extends StatefulWidget {
-  const TroughPage({super.key});
+  const TroughPage({super.key, required this.back});
+
+  final void Function() back;
   @override
   State<TroughPage> createState() {
     return _TroughPageState();
@@ -41,7 +43,7 @@ class _TroughPageState extends State<TroughPage> {
       Container(
         alignment: Alignment.centerLeft,
         child: IconButton(
-            onPressed: () {},
+            onPressed: widget.back,
             icon: const Icon(
               Icons.arrow_back_rounded,
               color: Colors.black,
