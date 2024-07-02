@@ -45,6 +45,20 @@ class ManagePicket extends StatelessWidget {
                     fontSize: MediaQuery.of(context).size.width * 0.065),
               ),
             ),
+            Padding(
+              padding: EdgeInsets.fromLTRB(
+                  MediaQuery.of(context).size.width * 0.15,
+                  MediaQuery.of(context).size.height * 0.015,
+                  MediaQuery.of(context).size.height * 0.015,
+                  0),
+              child: IconButton(
+                  onPressed: back,
+                  icon: const Icon(
+                    Icons.arrow_back_rounded,
+                    color: Colors.black,
+                    size: 30,
+                  )),
+            ),
           ],
         ),
       ),
@@ -59,6 +73,13 @@ class ManagePicket extends StatelessWidget {
                   },
                   icon: 'assets/images/cow.png',
                   text: 'CADASTRAR ANIMAL'),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+              FarmBoxDesign(
+                  icon: 'assets/images/cow_eating_picket.png',
+                  text: 'COCHOS',
+                  action: () {
+                    changeScreen('trough-page');
+                  }),
               SizedBox(height: MediaQuery.of(context).size.height * 0.02),
               FarmBoxDesign(
                   action: () {

@@ -41,7 +41,7 @@ class _RegisterAnimalState extends State<RegisterAnimal> {
 
   Future<void> loadAnimals() async {
     List loadedAnimals = await animalsInfoService
-        .loadList('${picketAcessado?.nome}_${picketAcessado?.tipo}.json');
+        .loadList('${picketAcessado?.nome}_${picketAcessado?.tipo}');
     setState(() {
       animals = loadedAnimals;
     });
@@ -105,8 +105,8 @@ class _RegisterAnimalState extends State<RegisterAnimal> {
         GenericService<AnimalInfo>(
                 toJson: (animalInfo) => animalInfo.toJson(),
                 fromJson: AnimalInfo.fromJson)
-            .saveList(animais,
-                '${picketAcessado?.nome}_${picketAcessado?.tipo}.json');
+            .saveList(
+                animais, '${picketAcessado?.nome}_${picketAcessado?.tipo}');
       });
 
       widget.cadastrado('manage-picket');

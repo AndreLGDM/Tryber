@@ -16,6 +16,7 @@ import 'package:tryber/pages/register_trough.dart';
 import 'package:tryber/pages/register_user.dart';
 import 'package:tryber/pages/report_page.dart';
 import 'package:tryber/pages/link_trough.dart';
+import 'package:tryber/pages/trough_page.dart';
 
 class BodyDesign extends StatefulWidget {
   const BodyDesign({super.key});
@@ -55,7 +56,8 @@ class _BodyDesignState extends State<BodyDesign> {
           changeScreen: changeScreenWithParam,
           abrirFazenda: changeScreenWithParam),
       'register-farm': RegisterFarm(changeScreenWithParam, back: goBack),
-      'manage-farm': ManageFarm(changeScreen: changeScreenWithParam),
+      'manage-farm':
+          ManageFarm(back: goBack, changeScreen: changeScreenWithParam),
       'edit-farm': EditFarm(back: goBack),
       'register-animal': RegisterAnimal(changeScreenWithParam, back: goBack),
       'register-trough': RegisterTrough(back: goBack),
@@ -68,6 +70,7 @@ class _BodyDesignState extends State<BodyDesign> {
           ManagePicket(back: goBack, changeScreen: changeScreenWithParam),
       'config-page': ConfigPage(back: goBack),
       'link-trough': LinkTrough(back: goBack),
+      'trough-page': const TroughPage(),
     };
 
     Widget screenWidget = screenWidgets[activeScreen] ??

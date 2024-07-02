@@ -36,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Future<void> loadUserInfo() async {
-    List loadedUsers = await userService.loadList('user.json');
+    List loadedUsers = await userService.loadList('users');
     setState(() {
       users = loadedUsers;
     });

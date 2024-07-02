@@ -37,13 +37,13 @@ class _RegisterFarmState extends State<RegisterFarm> {
 
   Future<void> loadFarms() async {
     List loadedFarms = await farmInfoService
-        .loadList('${usuarioLogado?.nome}_${usuarioLogado?.id}.json');
+        .loadList('${usuarioLogado?.nome}_${usuarioLogado?.id}');
     setState(() {
       farms = loadedFarms;
     });
   }
 
-  bool isFarmRegistered(String email) {
+  bool isFarmRegistered() {
     String nome = nomeController.text;
     for (var farm in farms) {
       if (farm.nome == nome) {
@@ -60,7 +60,7 @@ class _RegisterFarmState extends State<RegisterFarm> {
     final String localizacao = localizacaoController.text;
 
     if (nome.isNotEmpty && descricao.isNotEmpty && localizacao.isNotEmpty) {
-      if (isFarmRegistered(nome)) {
+      if (isFarmRegistered()) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('Fazenda já cadastrada. Por favor, use outro nome.'),
@@ -76,8 +76,7 @@ class _RegisterFarmState extends State<RegisterFarm> {
         GenericService<FarmInfo>(
                 toJson: (farmInfo) => farmInfo.toJson(),
                 fromJson: FarmInfo.fromJson)
-            .saveList(
-                fazendas, '${usuarioLogado?.nome}_${usuarioLogado?.id}.json');
+            .saveList(fazendas, '${usuarioLogado?.nome}_${usuarioLogado?.id}');
         widget.changePage('farm-page');
       });
 

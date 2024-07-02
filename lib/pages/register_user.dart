@@ -42,7 +42,7 @@ class _RegisterUserState extends State<RegisterUser> {
   }
 
   Future<void> loadUsers() async {
-    List loadedUsers = await userInfoService.loadList('user.json');
+    List loadedUsers = await userInfoService.loadList('users');
     setState(() {
       users = loadedUsers;
     });
@@ -246,7 +246,7 @@ class _RegisterUserState extends State<RegisterUser> {
     GenericService<UserInfo>(
             toJson: (userInfo) => userInfo.toJson(),
             fromJson: UserInfo.fromJson)
-        .saveList(usuarios, 'user.json');
+        .saveList(usuarios, 'users');
 
     widget.cadastrado('login-page');
 

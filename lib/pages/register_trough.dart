@@ -36,8 +36,8 @@ class _RegisterTroughState extends State<RegisterTrough> {
   }
 
   Future<void> loadTrough() async {
-    List loadedTroughs = await troughInfoService
-        .loadList('${fazendaAcessada?.nome}_troughs.json');
+    List loadedTroughs =
+        await troughInfoService.loadList('${fazendaAcessada?.nome}_troughs');
     setState(() {
       trough = loadedTroughs;
     });
@@ -68,7 +68,7 @@ class _RegisterTroughState extends State<RegisterTrough> {
       GenericService<TroughInfo>(
               toJson: (troughInfo) => troughInfo.toJson(),
               fromJson: TroughInfo.fromJson)
-          .saveList(cochos, '${fazendaAcessada?.nome}_troughs.json');
+          .saveList(cochos, '${fazendaAcessada?.nome}_troughs');
     });
 
     widget.back();

@@ -27,11 +27,6 @@ class GenericService<T> {
     return [];
   }
 
-  Future<void> deleteItem(T itemToDelete, String fileName) async {
-    List<T> currentList = await loadList(fileName);
-    currentList.removeWhere((item) => toJson(item) == toJson(itemToDelete));
-  }
-
   Future<void> renameFile(String oldFileName, String newFileName) async {
     Directory appDocDir = await getApplicationDocumentsDirectory();
     File oldFile = File('${appDocDir.path}/$oldFileName.json');

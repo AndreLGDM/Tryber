@@ -35,7 +35,7 @@ class _FarmPageState extends State<FarmPage> {
 
   Future<void> loadFarms() async {
     List loadedFarms = await farmInfoService
-        .loadList('${usuarioLogado?.nome}_${usuarioLogado?.id}.json');
+        .loadList('${usuarioLogado?.nome}_${usuarioLogado?.id}');
     setState(() {
       farms = loadedFarms;
     });

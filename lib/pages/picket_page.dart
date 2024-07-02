@@ -34,8 +34,8 @@ class _PicketPageState extends State<PicketPage> {
   }
 
   Future<void> loadPickets() async {
-    List loadedpickets = await picketInfoService
-        .loadList('${fazendaAcessada?.nome}_pickets.json');
+    List loadedpickets =
+        await picketInfoService.loadList('${fazendaAcessada?.nome}_pickets');
     setState(() {
       pickets = loadedpickets;
     });

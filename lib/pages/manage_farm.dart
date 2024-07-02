@@ -3,9 +3,10 @@ import 'package:tryber/models/farm_box_design.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ManageFarm extends StatelessWidget {
-  const ManageFarm({super.key, required this.changeScreen});
+  const ManageFarm({super.key, required this.changeScreen, required this.back});
 
   final void Function(String) changeScreen;
+  final void Function() back;
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +45,20 @@ class ManageFarm extends StatelessWidget {
                     color: const Color(0xFF2DBCB6),
                     fontSize: MediaQuery.of(context).size.width * 0.065),
               ),
+            ),
+            Padding(
+              padding: EdgeInsets.fromLTRB(
+                  MediaQuery.of(context).size.width * 0.13,
+                  MediaQuery.of(context).size.height * 0.015,
+                  MediaQuery.of(context).size.height * 0.015,
+                  0),
+              child: IconButton(
+                  onPressed: back,
+                  icon: const Icon(
+                    Icons.arrow_back_rounded,
+                    color: Colors.black,
+                    size: 30,
+                  )),
             ),
           ],
         ),

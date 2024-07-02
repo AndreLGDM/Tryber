@@ -76,6 +76,7 @@ flutter:
      - assets/images/paper.png
      - assets/images/cow.png
      - assets/images/cow_eating.png
+     - assets/images/cow_eating_picket.png
      - assets/images/tractor.png
      - assets/images/plus.png
      - assets/images/piquete.png
